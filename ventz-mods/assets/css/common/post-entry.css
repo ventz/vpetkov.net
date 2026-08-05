@@ -101,6 +101,14 @@
     border-radius: var(--radius);
 }
 
+/* Ventz Changes: scroll long code lines in previews — PaperMod's overflow rules
+   are scoped to .md-content (single pages) and never reach list entries */
+.entry-content .highlight pre {
+    margin: 0;
+    padding: 10px;
+    overflow-x: auto;
+}
+
 .home-info .entry-content p {
     margin-block-start: 1em;
     margin-block-end: 1em;
