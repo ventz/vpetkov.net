@@ -31,7 +31,7 @@
 {{- end }}
 
 {{- if .Content }}
-<div class="post-content">
+<div class="post-content md-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
   {{- partial "anchored_headings.html" .Content -}}
   {{- else }}{{ .Content }}{{ end }}
@@ -58,7 +58,8 @@
 
 {{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
 {{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
-{{- $class = "first-entry" }}
+{{- /* Ventz Changes: no special "first-entry" styling on the homepage */ -}}
+{{- $class = "post-entry tag-entry" }}
 {{- else if $term }}
 {{- $class = "post-entry tag-entry" }}
 {{- end }}

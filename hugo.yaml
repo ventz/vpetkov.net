@@ -11,7 +11,8 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+# Analytics: none injected by Hugo/PaperMod. Using Cloudflare Web Analytics instead,
+# enabled in the Cloudflare Pages dashboard (auto-injected beacon; no cookies, no config here).
 
 minify:
   disableXML: true
@@ -77,14 +78,6 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/ventz"
-
-  analytics:
-    google:
-      SiteVerificationTag: "XYZabc"
-    bing:
-      SiteVerificationTag: "XYZabc"
-    yandex:
-      SiteVerificationTag: "XYZabc"
 
   cover:
     hidden: true # hide everywhere but not in structured data
