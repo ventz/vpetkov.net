@@ -93,7 +93,7 @@
     font-size: 16px;
     /* Ventz Changes: ADDED RED Color for links */
     /*color: rgb(210, 53, 62);*/
-    color: rgb(155, 34, 44);
+    color: var(--accent-link);
 }
 
 .menu .active {

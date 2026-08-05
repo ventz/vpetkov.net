@@ -117,3 +117,23 @@ img {
     display: block;
     max-width: 100%;
 }
+
+/* Ventz Changes (a11y): visible keyboard focus for the search box (reset removes outlines) */
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Ventz Changes (a11y): visually-hidden-but-announced utility (clip method, not zero-size) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

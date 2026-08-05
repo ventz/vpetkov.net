@@ -30,6 +30,9 @@
 </header>
 {{- end }}
 
+{{- /* Ventz Changes (a11y): homepage otherwise has no h1 */ -}}
+{{- if .IsHome }}<h1 class="sr-only">{{ site.Title }}</h1>{{- end }}
+
 {{- if .Content }}
 <div class="post-content md-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
@@ -68,12 +71,14 @@
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
   <header class="entry-header">
-    <div class="date-container">
-        <div class="day">{{ .Date.Format "2" }}</div>
-        <div class="month-year">{{ .Date.Format "Jan" }} {{ .Date.Format "2006" }}</div>
-    </div>
+    {{- /* Ventz Changes (a11y): single <time> announced as one date; visual split hidden from AT */}}
+    <time class="date-container" datetime="{{ .Date.Format "2006-01-02" }}" aria-label="{{ .Date.Format "January 2, 2006" }}">
+        <span class="day" aria-hidden="true">{{ .Date.Format "2" }}</span>
+        <span class="month-year" aria-hidden="true">{{ .Date.Format "Jan" }} {{ .Date.Format "2006" }}</span>
+    </time>
     <h2 class="entry-hint-parent">
-      {{- .Title }}
+      {{- /* Ventz Changes (a11y): real link on the title instead of an empty overlay anchor */}}
+      <a class="entry-link" href="{{ .Permalink }}">{{ .Title }}</a>
       {{- if .Draft }}
       <span class="entry-hint" title="Draft">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
@@ -95,7 +100,6 @@
     <!--<p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>-->
   </div>
   {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
 

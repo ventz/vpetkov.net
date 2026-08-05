@@ -158,3 +158,13 @@
     });
 </script>
 {{- end }}
+
+{{- /* Ventz Changes (a11y): bare <pre> blocks (no-language fences) get overflow-x
+     scrolling from CSS but no tabindex from Chroma — make scrollable ones focusable */}}
+<script>
+    document.querySelectorAll("pre:not([tabindex])").forEach((p) => {
+        if (p.scrollWidth > p.clientWidth) {
+            p.tabIndex = 0;
+        }
+    });
+</script>

@@ -1,8 +1,16 @@
 {{- /* Comments area start */ -}}
 {{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
-<div class="comments">
+{{- /* Ventz Changes (a11y): named landmark + heading so comments are navigable */}}
+<section class="comments" aria-labelledby="comments-heading">
+<h2 id="comments-heading" class="sr-only">Comments</h2>
 <script>
-    const getStoredTheme = () => localStorage.getItem("pref-theme") === "dark" ? "dark" : "light";
+    /* Ventz Changes (a11y): match the theme's auto mode — fall back to OS preference
+       when the toggle was never used, instead of defaulting to light */
+    const getStoredTheme = () => {
+        const p = localStorage.getItem("pref-theme");
+        if (p) return p === "dark" ? "dark" : "light";
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    };
 
     const setGiscusTheme = () => {
         const sendMessage = (message) => {
@@ -47,7 +55,7 @@
         }
     });
 </script>
-</div>
+</section>
 <!--<script src="https://giscus.app/client.js"
         data-repo="ventz/dev.vpetkov.net-comments"
         data-repo-id="R_kgDOLOT0og"
