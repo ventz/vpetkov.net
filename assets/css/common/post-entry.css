@@ -123,13 +123,25 @@
     font-weight: 400;
 }
 
-/* Ventz Changes (a11y): the link now lives on the title; its ::after expands the
-   hit area over the card while inner summary links/code stay clickable above it */
+/* Theme behavior for archive entries and search results, which still emit the
+   empty overlay anchor (archives.html / fastsearch.js) and focus it directly */
 .entry-link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: var(--radius);
+}
+
+/* Ventz Changes (a11y): on list cards only, the link lives on the title; its ::after
+   expands the hit area over the card while inner summary links/code stay clickable */
+.post-entry .entry-link {
+    position: static;
     color: inherit;
 }
 
-.entry-link::after {
+.post-entry .entry-link::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -137,8 +149,10 @@
     z-index: 0;
 }
 
-.entry-content,
-.entry-footer {
+/* Only interactive descendants rise above the hit area — plain summary text
+   still falls through, so the whole card keeps navigating on click */
+.entry-content a,
+.entry-content pre {
     position: relative;
     z-index: 1;
 }
