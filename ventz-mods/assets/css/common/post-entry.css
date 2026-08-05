@@ -102,8 +102,9 @@
 }
 
 /* Ventz Changes: scroll long code lines in previews — PaperMod's overflow rules
-   are scoped to .md-content (single pages) and never reach list entries */
-.entry-content .highlight pre {
+   are scoped to .md-content (single pages) and never reach list entries.
+   Covers both Chroma-wrapped (.highlight pre) and bare pre (no-language fences). */
+.entry-content pre {
     margin: 0;
     padding: 10px;
     overflow-x: auto;
