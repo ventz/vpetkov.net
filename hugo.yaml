@@ -1,0 +1,178 @@
+baseURL: "https://vpetkov.net/"
+title: VPetkov.net
+copyright: 1999-{year} VPetkov.net - Take, Modify, Share, and I am in no way to be held responsible.
+#paginate: 10
+pagination:
+  pagerSize: 10
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+googleAnalytics: UA-123-45
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# https://gohugo.io/content-management/urls/
+permalinks:
+  page:
+    posts: "/:year/:month/:day/:slug/"
+
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: VPetkov.net
+  description: "My Life at 2am"
+  footer:
+    text: ""
+    hideCopyright: true
+  keywords: [Blog, Portfolio, PaperMod]
+  author: Ventz
+  # author: ["Me", "You"] # multiple authors
+  #images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["/bsd_logo.png"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
+
+  # This shows things other than "posts" - ex "pages"
+  #ShowAllPagesInArchive: true
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: false
+  disableSpecial1stPost: true
+  disableScrollToTop: false
+  comments: true
+  hidemeta: false
+  hideSummary: false
+  # https://gohugo.io/getting-started/configuration-markup/#table-of-contents
+  showtoc: true
+  tocopen: false
+
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "/favicon.ico"
+
+  # Logo and name shown on top left of site
+  label:
+    text: "VPetkov.net"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/ventz"
+
+  analytics:
+    google:
+      SiteVerificationTag: "XYZabc"
+    bing:
+      SiteVerificationTag: "XYZabc"
+    yandex:
+      SiteVerificationTag: "XYZabc"
+
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  editPost:
+    URL: "https://github.com/ventz/vpetkov.net"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  giscus:
+    repo: "ventz/dev.vpetkov.net-comments"
+    repoID: "R_kgDOLOT0og"
+    category: "General"
+    categoryID: "DIC_kwDOLOT0os4Cc9yl"
+    mapping: "url"
+    inputPosition: "top"
+
+
+menu:
+  main:
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: archive
+      name: Archive
+      url: /archives/
+      weight: 30
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 40
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+markup:
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
+    #
+# https://gohugo.io/templates/rss/
+outputs:
+  home:
+    - html
+    - rss
+    - json
+  section:
+    - html
+    - rss
+  taxonomy:
+    - html
+  term:
+    - html
+
+# https://gohugo.io/templates/sitemap-template/
+#sitemap:
+#  changeFreq: ""
+#  filename: sitemap.xml
+#  priority: -1
+    #services:
+    #  disqus:
+    #    shortname: vpetkov-net
+    #
+
+# Custom CSS
+# see: https://discourse.gohugo.io/t/papermod-theme-how-to-add-custom-css/30165/10
+# summary:
+# 1.) ~/blog/layouts/head.html  (copy from: ~/blog/themes/PaperMod/layouts/partials/head.html)
+# 2.) ~/blog/assets/css/core/theme-vars.css (copy from: # ~/blog/themes/PaperMod/assets/css/core/theme-vars.css)
+# 3.) Now make changes to the new theme-vars.css
+#     If you want to include a new css, make it in the new head.html
