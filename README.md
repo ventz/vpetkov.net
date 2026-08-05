@@ -17,6 +17,8 @@ Three layers, each independently controlled:
 3. **Customizations** — the site-level `layouts/` and `assets/css/` override the
    theme's files of the same name (standard Hugo behavior). Every change is marked
    with a `Ventz Changes` comment. The theme submodule itself is never modified.
+   (`ventz-mods/` is an inert historical backup of the original pre-0.146
+   customizations — see its README; Hugo never reads it.)
 
 ## Updating the theme
 
