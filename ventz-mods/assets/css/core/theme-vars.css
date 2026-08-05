@@ -19,6 +19,8 @@
     --code-block-bg: rgb(28, 29, 33);
     --code-bg: rgb(245, 245, 245);
     --border: rgb(238, 238, 238);
+    /* Ventz Changes (a11y): single knob for the red accent links (7.9:1 on white) */
+    --accent-link: rgb(155, 34, 44);
     color-scheme: light;
 }
 
@@ -26,14 +28,23 @@
     --theme: rgb(29, 30, 32);
     --entry: rgb(46, 46, 51);
     --primary: rgb(218, 218, 219);
-    --secondary: rgb(155, 156, 157);
+    /* Ventz Changes (a11y): was rgb(155,156,157) — 4.33:1 on --code-bg; now 4.9:1 */
+    --secondary: rgb(166, 167, 168);
     --tertiary: rgb(65, 66, 68);
     --content: rgb(196, 196, 197);
-    /* Ventz Changes: Made Dark Visible in list mode: --code-block-bg: rgb(46, 46, 51); */
-    --code-block-bg: var(--tertiary);
+    /* Ventz Changes (a11y): near-black keeps Chroma tokens >= 4.5:1 on post pages;
+       the lighter list-preview background moved to .entry-content .highlight below */
+    --code-block-bg: rgb(38, 39, 44);
     --code-bg: rgb(55, 56, 62);
     --border: rgb(51, 51, 51);
+    /* Ventz Changes (a11y): dark-mode red was 2.1:1 on the page background; 5.1:1 now */
+    --accent-link: rgb(224, 108, 117);
     color-scheme: dark;
+}
+
+/* Ventz Changes: keep the lighter "Dark Visible in list mode" background for previews */
+[data-theme="dark"] .entry-content .highlight {
+    background: var(--tertiary) !important;
 }
 
 .list {

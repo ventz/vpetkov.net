@@ -5,7 +5,9 @@
      and
      https://github.com/timdream/wordcloud2.js
 -->
-<div id="tag-wrapper" style="width: 100%; height: 50vh;"></div>
+{{- /* Ventz Changes (a11y): the cloud is a visual duplicate of the accessible tag list
+     below — hidden from AT and tab order; mouse clicks on words still work */}}
+<div id="tag-wrapper" aria-hidden="true" style="width: 100%; height: 50vh;"></div>
 <script src="/js/wordcloud2.js"></script>
 <script>
 let tagMap = new Map();
@@ -31,7 +33,7 @@ let tagArray = new Array();
         // loop over all added elements (by class name)
         document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
             const word = element.innerHTML;
-            element.innerHTML = `<a href="/tags/${word}/" style="color: inherit;">${word}</a>`;
+            element.innerHTML = `<a href="/tags/${word}/" style="color: inherit;" tabindex="-1">${word}</a>`;
         });
     });
 </script>

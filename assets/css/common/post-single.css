@@ -9,7 +9,7 @@
 .post-header a {
     /* Ventz Changes: ADDED RED Color for links */
     /*color: rgb(210, 53, 62);*/
-    color: rgb(155, 34, 44);
+    color: var(--accent-link);
 }
 
 /* Ventz Changes: Added this section */
@@ -78,14 +78,21 @@ details.toc {
     background: var(--code-bg);
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    /* Ventz Changes: Floating TOC sidebar to the right of the post */
-    position: absolute; /* fixed or absolute, depending on your needs */
-    top: 48px; /* adjust as needed */
-    right: -230px; /* adjust as needed */
-    width: 250px; /* set a fixed width */
-    margin: 0 2px 40px 2px;
     padding: 0.4em;
-    z-index: 1000; /* ensures it stays on top of other elements */
+}
+
+/* Ventz Changes: Floating TOC sidebar to the right of the post.
+   (a11y) Only where it fully fits — below 1360px it caused horizontal page
+   scrolling (WCAG 1.4.10); narrower viewports fall back to the in-flow TOC. */
+@media screen and (min-width: 1360px) {
+    details.toc {
+        position: absolute; /* fixed or absolute, depending on your needs */
+        top: 48px; /* adjust as needed */
+        right: -230px; /* adjust as needed */
+        width: 250px; /* set a fixed width */
+        margin: 0 2px 40px 2px;
+        z-index: 1000; /* ensures it stays on top of other elements */
+    }
 }
 
 [data-theme="dark"] details.toc {

@@ -123,13 +123,40 @@
     font-weight: 400;
 }
 
+/* Ventz Changes (a11y): the link now lives on the title; its ::after expands the
+   hit area over the card while inner summary links/code stay clickable above it */
 .entry-link {
+    color: inherit;
+}
+
+.entry-link::after {
+    content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     border-radius: var(--radius);
+    z-index: 0;
+}
+
+.entry-content,
+.entry-footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ventz Changes (a11y): honor reduced-motion for card lift and TOC expansion */
+@media (prefers-reduced-motion: reduce) {
+    .post-entry {
+        transition: none;
+    }
+
+    .post-entry:hover,
+    .post-entry:focus-within {
+        transform: none;
+    }
+
+    details::details-content {
+        transition: none;
+    }
 }
 
 .entry-hint {

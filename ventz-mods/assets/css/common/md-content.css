@@ -42,7 +42,7 @@
     text-decoration: underline;
     /* Ventz Changes: ADDED RED Color for links */
     /*color: rgb(210, 53, 62);*/
-    color: rgb(155, 34, 44);
+    color: var(--accent-link);
 }
 
 .md-content del {
@@ -266,4 +266,12 @@ video {
     border: 1px solid var(--code-bg);
     border-radius: var(--radius);
     max-width: 100%;
+}
+
+/* Ventz Changes (a11y): copy-code is hover-only in the theme (display:none removes it
+   from the tab order); reveal it for keyboard focus too */
+div.highlight:focus-within .copy-code,
+pre:focus-within .copy-code,
+.copy-code:focus-visible {
+    display: block;
 }
