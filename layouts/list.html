@@ -98,10 +98,13 @@
   {{- end }}
   {{- if (ne (.Param "hideSummary") true) }}
   <div class="entry-content">
-    {{- /* Ventz Changes: plain-text summaries — raw .Summary poured rendered HTML
-           (headings, hrs) into the cards; clamp long manual (more-tag) summaries */}}
-    {{- $summary := .Summary | plainify | htmlUnescape | chomp }}
-    <p>{{ $summary | truncate 300 }}{{ if and .Truncated (le (len $summary) 300) }}...{{ end }}</p>
+    {{- /* Ventz Changes: rich HTML preview (rendered .Summary). Headings are
+           rewritten to <p><strong> so card previews don't pollute the page's
+           heading outline (WCAG 1.3.1); other block elements (hr, pre) are tamed
+           by assets/css/extended/ventz-entry-preview.css. A div wrapper because
+           block children inside <p> break the parser. */}}
+    {{- $preview := replaceRE `(?s)<h[1-6][^>]*>(.*?)</h[1-6]>` `<p><strong>$1</strong></p>` (string .Summary) }}
+    <div>{{ $preview | safeHTML }}{{ if .Truncated }}...{{ end }}</div>
   </div>
   {{- end }}
 </article>

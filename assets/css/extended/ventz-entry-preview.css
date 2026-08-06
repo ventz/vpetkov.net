@@ -1,0 +1,53 @@
+/* Ventz Changes: list-card previews render the post's .Summary as HTML so you can
+   see what's going on (bold, code, links). These rules tame block elements inside
+   the cards so a summary's section headings/rules don't blow up the layout.
+   Scoped to .post-entry .entry-content per CLAUDE.md pitfall #6 (bare .entry-link /
+   archives + search must stay untouched). */
+
+/* Headings are rewritten to <p><strong> in layouts/list.html (heading-outline
+   a11y); the safety net below covers any heading markup that slips through */
+.post-entry .entry-content h1,
+.post-entry .entry-content h2,
+.post-entry .entry-content h3,
+.post-entry .entry-content h4,
+.post-entry .entry-content h5,
+.post-entry .entry-content h6 {
+    font-size: 1em;
+    font-weight: 700;
+    margin: 10px 0 4px;
+    color: inherit;
+}
+
+/* Thematic breaks and images add noise, not preview value */
+.post-entry .entry-content hr,
+.post-entry .entry-content img {
+    display: none;
+}
+
+.post-entry .entry-content p {
+    margin: 6px 0;
+}
+
+.post-entry .entry-content ul,
+.post-entry .entry-content ol {
+    margin: 6px 0;
+    padding-inline-start: 20px;
+}
+
+.post-entry .entry-content blockquote {
+    margin: 6px 0;
+    padding: 0 12px;
+    border-inline-start: 2px solid var(--border);
+}
+
+/* Code blocks stay compact; a long script shouldn't swallow the card */
+.post-entry .entry-content pre {
+    max-height: 9em;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.post-entry .entry-content pre code {
+    font-size: 0.85em;
+    line-height: 1.5;
+}
