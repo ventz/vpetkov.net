@@ -76,8 +76,14 @@ The overlay already follows the new structure.
 ## Local development
 
 ```sh
-hugo server -D --disableFastRender
+./hugo-preview.sh        # http://localhost/ — drafts+future posts, minified, live reload
 ```
+
+Serves on port 80 via the wildcard interface (macOS requirement), which means
+**drafts are visible to the local network while it runs** — fine at home, think
+twice on shared Wi-Fi. Extra hugo flags pass through (e.g.
+`./hugo-preview.sh --openBrowser=false`). Bare-bones equivalent:
+`hugo server -D --disableFastRender`.
 
 ## Comments (giscus)
 
@@ -112,9 +118,11 @@ Setting up a comments repo from scratch:
 ```
 
 The `YYYY/MM/` folder is organizational only — the published URL comes from the
-`date` front matter via the permalink config: `/YYYY/MM/DD/my-cool-hack/`.
-The archetype (`archetypes/posts.md`) pre-fills title/date/tags/description and
-starts every post as `draft: true`; flip to `draft: false` to publish.
+`date` front matter via the permalink config: `/YYYY/MM/DD/<slug>/`.
+The archetype (`archetypes/posts.md`) pre-fills title/date/slug/tags/description
+and starts every post as `draft: true`; flip to `draft: false` to publish.
+The `slug:` is set from the *filename* (not the title), so punctuation in titles
+never leaks into URLs; edit it in the front matter if you want a different URL.
 
 **The whole loop, including images:**
 
