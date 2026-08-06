@@ -90,9 +90,26 @@ Upload new media and get paste-ready URLs:
 ```
 
 The script refuses to clobber existing keys unless `-f` is given, sets content types
-by extension, and prints a markdown-ready line per file. Credentials come from `.env`
-(gitignored; canonical copy: `<redacted>` —
+by extension, and prints both the raw URL and a paste-ready `![](url)` markdown line
+per file. Verified end-to-end: upload → live serve → collision guard. Credentials come
+from `.env` (gitignored; canonical copy:
+`<redacted>` —
 a Cloudflare API token scoped to Workers R2 Storage:Edit only).
+
+Setup decisions and gotchas (2026-08-06):
+
+- **Bucket is named `media-vpetkov-net`** to match the domain — R2 rejects dots in
+  bucket names (`media.vpetkov.net` was refused by the API), so hyphens it is.
+- **R2 buckets cannot be renamed.** A rename is: create new bucket → copy objects
+  (GET/PUT via the API) → move the custom domain → delete the old bucket.
+- **The custom domain can be attached/detached via the R2 API using an R2-scoped
+  token only** (`POST/DELETE .../r2/buckets/<bucket>/domains/custom`, passing the
+  `zoneId`) — no Zone/DNS permissions needed; the R2 endpoint mediates the DNS and
+  certificate work. SSL takes a few seconds to go active after attach.
+- **The r2.dev "Public Development URL" is deliberately disabled** — only
+  `media.vpetkov.net` serves the bucket. The r2.dev hostname embeds an
+  account-derived hash, so leaving it on both duplicates the content on an
+  unbranded URL and leaks an account identifier.
 
 ## Deploy — Cloudflare Pages
 
