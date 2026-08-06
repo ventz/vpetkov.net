@@ -1,12 +1,13 @@
 ---
-title: DIY – Monitor Heating Oil Tank Gallons with Pushbullet, SMS, and Email Alerting
+title: DIY - Monitor Heating Oil Tank Gallons with Pushbullet, SMS, and Email Alerting
 author: Ventz
-type: post
+type: posts
 date: 2017-11-12T08:01:14+00:00
 url: /2017/11/12/diy-monitor-heating-oil-tank-gallons-with-pushbullet-sms-and-email-alerting/
 categories:
-  - Uncategorized
+  - Old-WordPress-Blog
 tags:
+  - old-wordpress-blog
   - automation
   - cloud
   - data
@@ -17,11 +18,11 @@ tags:
 ---
 **NOTE: Updated code 10-27-2018**
 
-In this day and age where everything is measured, recorded, and available remotely (via a REST API most of the time!), it really bothered me that our heating oil tank measured the remaining gallons of oil by a crude plastic dip stick. It&#8217;s not accurate, there is no historical data, and there is no way to audit (for honesty, accuracy, or problems/errors).
+In this day and age where everything is measured, recorded, and available remotely (via a REST API most of the time!), it really bothered me that our heating oil tank measured the remaining gallons of oil by a crude plastic dip stick. It's not accurate, there is no historical data, and there is no way to audit (for honesty, accuracy, or problems/errors).
 
-So the problem is simple enough: Find a quick and easy way to remotely monitor the number of gallons of heating oil in a home, and alert at pre-set intervals (let&#8217;s say 75%, 50%, and 25%) of remaining oil in the tank.
+So the problem is simple enough: Find a quick and easy way to remotely monitor the number of gallons of heating oil in a home, and alert at pre-set intervals (let's say 75%, 50%, and 25%) of remaining oil in the tank.
 
-After looking for commercial solutions, the cheapest one I found is $120 with a $10/year fee. In my view, that&#8217;s simply ridiculous. I decided that I could build something better for 1/3rd of the price ($40), without an yearly fee.
+After looking for commercial solutions, the cheapest one I found is $120 with a $10/year fee. In my view, that's simply ridiculous. I decided that I could build something better for 1/3rd of the price ($40), without an yearly fee.
 
 ## Hardware How-To
 
@@ -33,28 +34,32 @@ This should take care of the hardware side.
 
 ## Firmware code and How-To Access Data
 
-Once you have it built &#8211; flash your Photon with the code here (see bellow &#8211; large code paste).
+Once you have it built - flash your Photon with the code here (see bellow - large code paste).
 
 After that, you should be able to do this from the particle CLI (replace $device-id-here$ with actual device #):  
-`<br />
-# This will tell you how many inches away from the sensor the oil is. It is the only "100% accurate" (non-calculated, but actually measured that is)<br />
-particle get $device-id-here$ distance</p>
-<p># This is calculated based on the first one and assuming a 275 gallon tank:<br />
-particle get $device-id-here$ oil-inches</p>
-<p># And using well known charts (like this: http://www.adamspetro.com/residential-heating-tank-chart), gallons are calculated:<br />
-particle get $device-id-here$ oil-gallons</p>
-<p># You can also get a real time stream (every 10 seconds with current firmware code):<br />
-particle subscribe oil-gallons mine<br />
-` 
+```
+# This will tell you how many inches away from the sensor the oil is. It is the only "100% accurate" (non-calculated, but actually measured that is)
+particle get $device-id-here$ distance
+
+# This is calculated based on the first one and assuming a 275 gallon tank:
+particle get $device-id-here$ oil-inches
+
+# And using well known charts (like this: http://www.adamspetro.com/residential-heating-tank-chart), gallons are calculated:
+particle get $device-id-here$ oil-gallons
+
+# You can also get a real time stream (every 10 seconds with current firmware code):
+particle subscribe oil-gallons mine
+```
 
 If you have not used the Particle Photon, I am going to provide some additional information on the bottom of this post that will walk you through building/flashing the code, and how to setup the web hook. I have also added a lot of pictures of this on the Instructables page to go with the steps.
 
 Particle Photon web IDE code:
 
-<pre class="lang:c decode:true " title="Photon - Oil Tank Measurement">// By: Ventz Petkov
+```c
+// By: Ventz Petkov
 // LAST UPDATED: 10-27-2018
 // This #include statement was automatically added by the Particle IDE.
-#include &lt;HC_SR04.h>
+#include <HC_SR04.h>
 
 double inches = 0.0;
 double inches_of_oil = 0.0;
@@ -565,41 +570,41 @@ void loop()
         refill_alert = 0;
     }
     
-    else if(gallons_of_oil > 125 && gallons_of_oil &lt; 187.5 &#038;&#038; alert1) {
+    else if(gallons_of_oil > 125 && gallons_of_oil < 187.5 && alert1) {
     */
-    if(gallons_of_oil > 125 && gallons_of_oil &lt; 187.5 &#038;&#038; alert1) {
+    if(gallons_of_oil > 125 && gallons_of_oil < 187.5 && alert1) {
         Particle.publish("Alert", "Oil Level bellow 75%", PRIVATE);
         alert1 = 0;
         refill_alert = 1;
     }
-    else if(gallons_of_oil > 65 &&  gallons_of_oil &lt; 125 &#038;&#038; alert2) {
+    else if(gallons_of_oil > 65 &&  gallons_of_oil < 125 && alert2) {
         Particle.publish("Alert", "NOTICE: Oil Level bellow 50%", PRIVATE);
         alert2 = 0; alert1 = 1;
         refill_alert = 1;
     }
-    else if(gallons_of_oil > 75 &&  gallons_of_oil &lt; 87.5 &#038;&#038; alert3) {
+    else if(gallons_of_oil > 75 &&  gallons_of_oil < 87.5 && alert3) {
         Particle.publish("Alert", "NOTICE: Oil Level bellow 35%", PRIVATE);
         alert3 = 0; alert1 = 0; alert2 = 0;
         refill_alert = 1;
     }
-    else if(gallons_of_oil > 62.5 &&  gallons_of_oil &lt; 75 &#038;&#038; alert4) {
+    else if(gallons_of_oil > 62.5 &&  gallons_of_oil < 75 && alert4) {
         Particle.publish("Alert", "WARNING: Oil Level bellow 30% - Refill Soon", PRIVATE);
         alert4 = 0; alert1 = 0; alert2 = 0; alert3 = 0;
         refill_alert = 1;
     }
-    else if(gallons_of_oil > 50 &&  gallons_of_oil &lt; 62.5 &#038;&#038; alert5) {
+    else if(gallons_of_oil > 50 &&  gallons_of_oil < 62.5 && alert5) {
         Particle.publish("Alert", "CRITIAL: Oil Level bellow 25% - Call to Refill", PRIVATE);
         alert5 = 0; alert1 = 0; alert2 = 0; alert3 = 0; alert4 = 0;
         refill_alert = 1;
     }
-    else if(gallons_of_oil &lt; 50 &#038;&#038; alert6) {
+    else if(gallons_of_oil < 50 && alert6) {
         Particle.publish("Alert", "EMERGENCY: Oil Level bellow 20%  - Get Delivery ASAP!", PRIVATE);
         alert6 = 0; alert1 = 0; alert2 = 0; alert3 = 0; alert4 = 0; alert5 = 0;
         refill_alert = 1;
         
     }
 }
-</pre>
+```
 
 Now that you have everything you need, the last part is to web hook the "Alert" publish call into something that actually alerts you. The easiest way to do this is to create a JSON "custom" webhook, which allows you to "hook" a publish event. In this case, I will hook the "Alert" published event, and redirect it to Pushbullet. You can just as easily call a 3rd party SMS service (Twilio), Email (Sendgrid, Mailgun, etc), or some other custom notification/hook.
 
@@ -607,50 +612,50 @@ Here is the Pushbullet config (please replace "Access-Token" with your token):
 
 ## Web Hook for Notifications (free with Pushbullet)
 
-`<br />
-{<br />
-"eventName": "Alert",<br />
-"url": "https://api.pushbullet.com/v2/pushes",<br />
-"requestType": "POST",<br />
-"headers": {<br />
-"Access-Token": "#REPLACE-WITH-YOUR-PUSHBULLET-ACCESS-TOKEN",<br />
-"Content-Type": "application/json"<br />
-},<br />
-"json": {<br />
-"type": "note",<br />
-"title": "Particle Alert - {{PARTICLE_PUBLISHED_AT}}",<br />
-"body": "{{PARTICLE_EVENT_VALUE}}"<br />
-},<br />
-"deviceID": "",<br />
-"mydevices": true,<br />
-"source": "{{PARTICLE_DEVICE_ID}}",<br />
-"published_at": "{{PARTICLE_PUBLISHED_AT}}"<br />
-}<br />
-` 
+```
+{
+"eventName": "Alert",
+"url": "https://api.pushbullet.com/v2/pushes",
+"requestType": "POST",
+"headers": {
+"Access-Token": "#REPLACE-WITH-YOUR-PUSHBULLET-ACCESS-TOKEN",
+"Content-Type": "application/json"
+},
+"json": {
+"type": "note",
+"title": "Particle Alert - {{PARTICLE_PUBLISHED_AT}}",
+"body": "{{PARTICLE_EVENT_VALUE}}"
+},
+"deviceID": "",
+"mydevices": true,
+"source": "{{PARTICLE_DEVICE_ID}}",
+"published_at": "{{PARTICLE_PUBLISHED_AT}}"
+}
+```
 
 Or, if you are using Pushover  
-`<br />
-{<br />
-  "event": "Alert",<br />
-  "url": "https://api.pushover.net/1/messages.json",<br />
-  "requestType": "POST",<br />
-  "rejectUnauthorized": true,<br />
-  "noDefaults": false,<br />
-  "headers": {<br />
-    "Content-Type": "application/json"<br />
-  },<br />
-  "json": {<br />
-      "token": "#APP-API-TOKEN-KEY-HERE#",<br />
-      "user": "#USER-KEY-HERE#",<br />
-      "title": "Particle Alert - {{PARTICLE_PUBLISHED_AT}}",<br />
-      "message": "{{PARTICLE_EVENT_VALUE}}"<br />
-  },<br />
-  "deviceID": "",<br />
-  "mydevices": true,<br />
-  "source": "{{PARTICLE_DEVICE_ID}}",<br />
-  "published_at": "{{PARTICLE_PUBLISHED_AT}}"<br />
-}<br />
-` 
+```
+{
+  "event": "Alert",
+  "url": "https://api.pushover.net/1/messages.json",
+  "requestType": "POST",
+  "rejectUnauthorized": true,
+  "noDefaults": false,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "json": {
+      "token": "#APP-API-TOKEN-KEY-HERE#",
+      "user": "#USER-KEY-HERE#",
+      "title": "Particle Alert - {{PARTICLE_PUBLISHED_AT}}",
+      "message": "{{PARTICLE_EVENT_VALUE}}"
+  },
+  "deviceID": "",
+  "mydevices": true,
+  "source": "{{PARTICLE_DEVICE_ID}}",
+  "published_at": "{{PARTICLE_PUBLISHED_AT}}"
+}
+```
 
 You will note that I have added a whole lot of pictures showing the steps around the Photon code build/flash and the Webhooks on the Instructables page. Here is some more informations/detials:
 
@@ -658,17 +663,17 @@ You will note that I have added a whole lot of pictures showing the steps around
 
 I made the assumption that a most people who would be interested in a hardware project like this one would be very familiar with Particle's photons/arduino, and I think this is a bad assumption. If you have not used these before, here is a step by step walk thru what to do from the software side in order to get this to work.
 
-1.) Start by following this: <a href="https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device" rel="noopener" target="_blank">https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device</a>  
-2.) After you have initialized/"set up" your photon, go to: <a href="https://build.particle.io" rel="noopener" target="_blank">https://build.particle.io</a>  
+1.) Start by following this: <https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device>  
+2.) After you have initialized/"set up" your photon, go to: <https://build.particle.io>  
 3.) On the left side, under "Current Apps" (where it says "Title") create an app called "oil-tank".  
 Paste the large code from "Particle Photon web IDE code:" above, and click on the top-left "Save" (folder icon)  
 4.) On the left, click on "Libraries" (bookmark icon) and under "Community Libraries" search in the box for "HC_SR04".  
 5.) Click on the found "HC_SR04" and click the blue "INCLUDE IN PROJECT" button. Then select from the list "oil-tank" (what you called your app in step #3), and click the blue "CONFIRM" button.  
 6.) At this point, make sure there is only ONE line that looks like this:  
-`<br />
-// This #include statement was automatically added by the Particle IDE.<br />
-#include <HC_SR04.h><br />
-`  
+```
+// This #include statement was automatically added by the Particle IDE.
+#include <HC_SR04.h>
+```
 at the top of the file.  
 7.) Now clic on "Devices" and click on the star icon next to the device you setup in step #1 -- this selects it for flashing the firmware.  
 8.) Go back to your "Code" for "oil-tank" and click "Verify" (check icon above "Save") and then "Flash" (lightning bolt icon above "Verify")  
@@ -676,9 +681,9 @@ at the top of the file.
 
 ## What are these Web Hooks/Notifications - step by step instructions
 
-1.) Go to: <a href="https://console.particle.io/devices" rel="noopener" target="_blank">https://console.particle.io/devices</a>  
+1.) Go to: <https://console.particle.io/devices>  
 2.) Click on "Integrations" (star-looking icon above the Billing icon) and click on "New Integration", and click on "Webhook".  
 3.) There are TWO differentways to do this - using the "WEBHOOK BUILDER" step by step, OR pasting the whole JSON in the "CUSTOM TEMPLATE" section. No matter which you do, the only thing to really pay attention to is the "Event Name". It always needs to be "Alert" (unless you change the Particle.publish in your firmware. This is what hooks that notifications into some "real world" notifcation - alert, SMS, Email, etc.)  
 4.) If you use the "CUSTOM TEMPLATE", you can paste the "Web Hook for Notifications (free with Pushbullet)" code.  
-Alternative, and let's say if you want SMS for example, you can go to the "WEBHOOK BUILDER" section, and follow something like this: <a href="https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#sign-into-or-sign-up-for-a-twilio-account" rel="noopener" target="_blank">https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#sign-into-or-sign-up-for-a-twilio-account</a>, specifically following this sub-section: <a href="https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#example-1-a-simple-example-of-sending-smses-with-a-particle-photon" rel="noopener" target="_blank">https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#example-1-a-simple-example-of-sending-smses-with-a-particle-photon</a> (the "Set Up a Particle Webhook" part, and noting that the "Event Name" should be "Alert").  
+Alternative, and let's say if you want SMS for example, you can go to the "WEBHOOK BUILDER" section, and follow something like this: <https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#sign-into-or-sign-up-for-a-twilio-account>, specifically following this sub-section: <https://www.twilio.com/docs/guides/sms-mms-messages-particle-photon#example-1-a-simple-example-of-sending-smses-with-a-particle-photon> (the "Set Up a Particle Webhook" part, and noting that the "Event Name" should be "Alert").  
 5.) That's it -- you now have a method to "Alert" to external services. Generally, look for the REST POST URL, and either place it in your "WEBHOOK BUILDER" section, or into the JSON template I provided above.
