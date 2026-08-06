@@ -98,8 +98,10 @@
   {{- end }}
   {{- if (ne (.Param "hideSummary") true) }}
   <div class="entry-content">
-    <p>{{ .Summary }}{{ if .Truncated }}...{{ end }}</p>
-    <!--<p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>-->
+    {{- /* Ventz Changes: plain-text summaries — raw .Summary poured rendered HTML
+           (headings, hrs) into the cards; clamp long manual (more-tag) summaries */}}
+    {{- $summary := .Summary | plainify | htmlUnescape | chomp }}
+    <p>{{ $summary | truncate 300 }}{{ if and .Truncated (le (len $summary) 300) }}...{{ end }}</p>
   </div>
   {{- end }}
 </article>
