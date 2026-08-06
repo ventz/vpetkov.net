@@ -1,8 +1,12 @@
 #!/bin/bash
 # Local preview server: ./hugo-preview.sh [extra hugo flags]
 #
-# Serves the site at http://localhost/ (port 80 — fine unprivileged on modern
-# macOS) with drafts visible and a browser tab opened automatically.
+# Serves the site at http://localhost/ (port 80 — macOS allows this unprivileged
+# only on the wildcard bind, see --bind below) with drafts visible and a browser
+# tab opened automatically.
+#
+# NOTE: the wildcard bind means drafts are visible to the whole local network
+# while the server runs. Fine at home; think twice on shared/public Wi-Fi.
 set -euo pipefail
 cd "$(dirname "$0")"
 
