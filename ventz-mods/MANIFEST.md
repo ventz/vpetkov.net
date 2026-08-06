@@ -21,7 +21,7 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_markup/render-image.html` — +12/-0
 - `layouts/_partials/comments.html` — +67/-0
 - `layouts/_partials/extend_footer.html` — +13/-3
-- `layouts/_partials/footer.html` — +16/-2
+- `layouts/_partials/footer.html` — +17/-2
 - `layouts/_partials/header.html` — +9/-2
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
