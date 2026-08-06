@@ -65,7 +65,7 @@ If you need to change any browser _**Settings**_, do so via the "Chromium" brows
 At last, all this assumes the latest version of Raspbian with desktop (not Debian/Ubuntu! -  
 <https://downloads.raspberrypi.org/raspbian_latest>), and you can re-run the **curl and sh** as many times as you want without any harm.
 
-If you are curious about some of the background and details on why you can't easily run Netflix (and others) on your Pi and how to solve it, you are welcome to go look at my "development" blog post article: <http://blog.vpetkov.net/2019/07/12/netflix-and-spotify-on-a-raspberry-pi-4-with-latest-default-chromium/>
+If you are curious about some of the background and details on why you can't easily run Netflix (and others) on your Pi and how to solve it, you are welcome to go look at my "development" blog post article: [vpetkov.net/2019/07/12/netflix-and-spotify-on-a-raspberry-pi-4-with-latest-default-chromium/](/2019/07/12/netflix-and-spotify-on-a-raspberry-pi-4-with-latest-default-chromium/)
 
 Enjoy!
 

@@ -16,7 +16,7 @@ tags:
 
 ---
 If you have not used Swarm, skim the non-service-discovery tutorial to get a feel for how it works:  
-<https://blog.vpetkov.net/2015/12/07/docker-swarm-tutorial-and-examples>. It's very easy, and it should give you an idea of how it works within a couple of minutes.
+[vpetkov.net/2015/12/07/docker-swarm-tutorial-and-examples](/2015/12/07/docker-swarm-tutorial-and-examples). It's very easy, and it should give you an idea of how it works within a couple of minutes.
 
 Using Swarm with pre-generated static tokens is useful, but there are many benefits to using a service discovery backend. For example, you can utilize network overlays and have common "bridges" that span multiple hosts (<https://docs.docker.com/engine/userguide/networking/get-started-overlay/>). It also provides service registration and discovery for the Docker containers launched into the Swarm. Now lets get into how to use it with service discovery - which is what you would use in a scaled out environment/production.
 

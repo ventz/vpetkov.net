@@ -15,7 +15,7 @@ tags:
   - perl
 
 ---
-A long time ago I became frustrated with having to update my WordPress plugins manually, so I created a Perl script and a blog post (<https://blog.vpetkov.net/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/>) that explained how to automate this. The idea was quite simple: feed a plugin name, have the script check the WordPress plugins page for the latest versioned download, grab it, and extract it over the specified blog plugins directory and thus update the plugin.
+A long time ago I became frustrated with having to update my WordPress plugins manually, so I created a Perl script and a blog post ([vpetkov.net/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/](/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/)) that explained how to automate this. The idea was quite simple: feed a plugin name, have the script check the WordPress plugins page for the latest versioned download, grab it, and extract it over the specified blog plugins directory and thus update the plugin.
 
 The script was simple and it worked very well. It made dealing with plugins many times easier. However, there was one big down side as some users pointed out - it did not actually check if a plugin needed to be updated. It blindly replaced the current plugin with the latest version. This meant that there was no way to "efficiently" automate it. If you cron-ed it directly, it would simply pull and update all your plugins at whatever period you specified. For the longest time this really irritated me, but I didn't have time to dig through WordPress to understand how the engined checked and signaled for local plugins. One particular user ([Joel](http://blog.droidzone.in/2013/03/31/automatically-update-all-wordpress-plugins-from-bash/)) forked a copy and made many improvements to deal with this specific issue.
 
@@ -34,7 +34,7 @@ sudo mv wp-cli.phar /usr/local/bin/wp && chmod +x /usr/local/bin/wp
 
 <!--more-->
 
-Now, grab the Perl script (<https://blog.vpetkov.net/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/>) and save it as:  
+Now, grab the Perl script ([vpetkov.net/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/](/2011/08/03/script-to-upgrade-plugins-on-wordpress-to-the-latest-version-fully-automatically/)) and save it as:  
 ```bash
 /usr/local/bin/update-wp-plugins.pl
 ```

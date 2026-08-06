@@ -15,7 +15,7 @@ tags:
   - tasker
 
 ---
-If you just started reading this directly and didn't read my "what is Tasker", please read my short post (<http://blog.vpetkov.net/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/>)
+If you just started reading this directly and didn't read my "what is Tasker", please read my short post ([vpetkov.net/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/](/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/))
 
 Let's start with the problem - I can't stand unlocking my phone every 10-15 minutes when I decide to look at the screen either because I heard a beep, or because I want to check for a work email/SMS. The obvious solution: get rid of the lock screen. The new problem: now my phone is not secure. I need something to toggle this functionality on a "need basis". Solution: use Tasker to create a task which will be created into a widget.
 

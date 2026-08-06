@@ -19,11 +19,11 @@ tags:
 
 **[updated: Feb 11th, 2018 | Updated script to deal with new format, syntax, urls]**
 
-LATEST UPDATE: Please checkout my "perfect" WordPress plugin update solution: <http://blog.vpetkov.net/2018/09/30/easy-fully-automated-wordpress-plugin-update-system>
+LATEST UPDATE: Please checkout my "perfect" WordPress plugin update solution: [vpetkov.net/2018/09/30/easy-fully-automated-wordpress-plugin-update-system](/2018/09/30/easy-fully-automated-wordpress-plugin-update-system)
 
 ~~Droidzone (Joel Mathew) has created a much more advanced fork of this with many improvements - check it out: <http://blog.droidzone.in/2013/03/31/automatically-update-all-wordpress-plugins-from-bash/>~~ (While I still very much support this, I believe my updated solution from Sept 30th, 2018 is incredibly easier and has a single dependency on "WWW::Mechanize". Leaving the link here to Joel's for anyone that is interested in taking a look at his. His original fork + extension supports good visual output and other options that someone may be interested in. I believe the last update was in 2014.)
 
-I already created a script to upgrade wordpress installations automatically. You can find it here: [http://blog.vpetkov.net/2011/06/01/script-to-upgrade-wordpress-to-the-latest-version-fully-automatically](script-to-upgrade-wordpress-to-the-latest-version-fully-automatically) Recently, the same general problem came about when it came to plugins. The biggest problem I had is that I had to log-into wordpress, see a number of plugins that were outdated, and then go hunt each one down by generally just copying the name and pasting it into google . Even thought most of the time, the plugin was the first hit, I then had to download the latest version, extract it, and clean it up. Imagine doing this for 10+ plugins for 5+ blogs - constantly. It was just time consuming and frustrating.
+I already created a script to upgrade wordpress installations automatically. You can find it here: [/2011/06/01/script-to-upgrade-wordpress-to-the-latest-version-fully-automatically](script-to-upgrade-wordpress-to-the-latest-version-fully-automatically) Recently, the same general problem came about when it came to plugins. The biggest problem I had is that I had to log-into wordpress, see a number of plugins that were outdated, and then go hunt each one down by generally just copying the name and pasting it into google . Even thought most of the time, the plugin was the first hit, I then had to download the latest version, extract it, and clean it up. Imagine doing this for 10+ plugins for 5+ blogs - constantly. It was just time consuming and frustrating.
 
 Here is my solution in the form of a perl script:  
 ```perl

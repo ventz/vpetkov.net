@@ -17,7 +17,7 @@ tags:
 ---
 **[updated: Sep 30th, 2018 | Cleaned up script, and references "perfect" plugin update system]**
 
-NOTE: Please checkout my "perfect" WordPress plugin update solution: <http://blog.vpetkov.net/2018/09/30/easy-fully-automated-wordpress-plugin-update-system>
+NOTE: Please checkout my "perfect" WordPress plugin update solution: [vpetkov.net/2018/09/30/easy-fully-automated-wordpress-plugin-update-system](/2018/09/30/easy-fully-automated-wordpress-plugin-update-system)
 
 When you host your own WordPress installation, and there is some sort of an update about every month or so, it can quickly get very annoying doing all the upgrade steps manually (for the people who do not have a CPANEL or FTP account). Now imagine hosting 5-6 WordPress installations. Now imagine 100+. Welcome to my nightmare. Eventually I caved in and wrote this:
 
