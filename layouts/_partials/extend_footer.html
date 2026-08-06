@@ -1,0 +1,13 @@
+{{- /* Ventz Changes: auto-open the floating TOC when it renders as a sidebar
+       (>=1360px, matches the media query in assets/css/common/post-single.css).
+       On narrower viewports the in-flow TOC keeps the TocOpen config default. */}}
+{{- if and .IsPage (.Param "ShowToc") }}
+<script>
+    (function () {
+        var toc = document.querySelector("details.toc");
+        if (toc && window.matchMedia("(min-width: 1360px)").matches) {
+            toc.open = true;
+        }
+    })();
+</script>
+{{- end }}
