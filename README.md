@@ -150,9 +150,8 @@ Upload new media and get paste-ready URLs:
 The script refuses to clobber existing keys unless `-f` is given, sets content types
 by extension, and prints both the raw URL and a paste-ready `![](url)` markdown line
 per file. Verified end-to-end: upload → live serve → collision guard. Credentials come
-from `.env` (gitignored; canonical copy:
-`<redacted>` —
-a Cloudflare API token scoped to Workers R2 Storage:Edit only).
+from `.env` (gitignored; the canonical copy lives outside this repo) — an API token
+scoped to Workers R2 Storage:Edit only.
 
 Setup decisions and gotchas (2026-08-06):
 

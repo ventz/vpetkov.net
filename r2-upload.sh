@@ -7,8 +7,7 @@
 #   ./r2-upload.sh -f file.png                       # overwrite if the key already exists
 #
 # Prints the https://media.vpetkov.net/... URL and a paste-ready markdown line per file.
-# Credentials: .env next to this script (canonical copy:
-# <redacted>)
+# Credentials: .env next to this script (gitignored; kept outside the repo).
 set -euo pipefail
 
 BUCKET="media-vpetkov-net"
