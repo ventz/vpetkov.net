@@ -1,0 +1,34 @@
+{{- /* Ventz Changes: theme copy + explicit width/height for media.vpetkov.net
+       images (Lighthouse CLS: "Image elements do not have explicit width and
+       height"). Remote dimensions are probed once at build via resources.GetRemote
+       (cached in resources/); on fetch failure the img renders as before. */}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path }}
+  {{- with or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery -}}
+      {{- $src = printf "%s?%s" $src . -}}
+    {{- end -}}
+    {{- with $u.Fragment -}}
+      {{- $src = printf "%s#%s" $src . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
+{{- /* Ventz Changes: probe dimensions for our R2-hosted media */ -}}
+{{- if eq $u.Host "media.vpetkov.net" -}}
+  {{- with try (resources.GetRemote $src) -}}
+    {{- with .Value -}}
+      {{- $attributes = merge $attributes (dict "width" (string .Width) "height" (string .Height)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<img
+  {{- range $k, $v := $attributes -}}
+    {{- if $v -}}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}>
+{{- /**/ -}}

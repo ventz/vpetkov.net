@@ -18,8 +18,8 @@ tags:
 > 
 > [vpetkov.net/2020/03/30/raspberry-pi-netflix-one-line-easy-install-along-with-hulu-amazon-prime-disney-plus-hbo-spotify-pandora-and-many-others/](/2020/03/30/raspberry-pi-netflix-one-line-easy-install-along-with-hulu-amazon-prime-disney-plus-hbo-spotify-pandora-and-many-others/)
 
-**^^^ PLEASE USE POST USING ABOVE LINK FOR MY "ONE-LINE IT JUST WORKS" ^^^**  
-(IGNORE EVERYTHING BELLOW THIS AS IT'S THE ORIGINAL DEVELOPMENT WORK)
+**^^^ Please use the post linked above for my "one-line it just works" install ^^^**  
+(Ignore everything bellow this, as it's the original development work)
 
 <!--more-->
 

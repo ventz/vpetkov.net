@@ -13,3 +13,21 @@
 .chroma .sh {
     color: #9aa1bc;
 }
+
+/* Ventz Changes: skip navigation link (WCAG 2.4.1) — off-screen until focused */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    padding: 8px 16px;
+    background: var(--entry);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+}
+
+.skip-link:focus {
+    left: 8px;
+    top: 8px;
+}
