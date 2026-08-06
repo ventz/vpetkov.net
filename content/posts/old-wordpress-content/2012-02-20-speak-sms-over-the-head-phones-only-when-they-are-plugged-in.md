@@ -36,5 +36,5 @@ BUGS: There aren&#8217;t any really, but I&#8217;ve noticed that If you receive 
 
 Hope you enjoy, and as always, leave comments &#8211; both about things that work and things that don&#8217;t.
 
- [1]: http://blog.vpetkov.net/wp-content/uploads/2012/02/Headphones.zip "Headphones.zip"
- [2]: http://blog.vpetkov.net/wp-content/uploads/2012/02/Headphones.zip "Headphones"
+ [1]: /wp-content/uploads/2012/02/Headphones.zip "Headphones.zip"
+ [2]: /wp-content/uploads/2012/02/Headphones.zip "Headphones"

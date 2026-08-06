@@ -30,7 +30,7 @@ Here&#8217;s the logic:
 7.) Set Widget Icon &#8211; Unlocked Lock, if %KEYG is off  
 8.) Set Widget Icon &#8211; Locked Lock, if %KEYG is on
 
-> Download Takser task: <a href="http://blog.vpetkov.net/wp-content/uploads/2011/05/Keyguard.tsk_.xml_.zip" target="_blank">Keyguard.tsk.xml.zip</a> (md5: 0e2f2fd8cdaa5ff71a1fd5b0329bdfe6)  
+> Download Takser task: <a href="/wp-content/uploads/2011/05/Keyguard.tsk_.xml_.zip" target="_blank">Keyguard.tsk.xml.zip</a> (md5: 0e2f2fd8cdaa5ff71a1fd5b0329bdfe6)  
 > Please unzip it, copy it to your device, and then import it into Tasker.
 
 Make it into a widget, press it, the icon will change to an unlocked keylock, and your lock screen goes away. Hit power, check to see that when you hit power again, your lock screen is not there. The volume keys will turn on the screen too. If you press the widget again, the icon will change to a locked keylock, and now you will have your lock screen. What I personally do is use the pin lock screen, and then toggle it this way while I am at work. As soon as I step out or anything like this, I toggle my lock back on.

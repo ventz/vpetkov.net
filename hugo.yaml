@@ -94,11 +94,22 @@ params:
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
+    threshold: 0.3
+    minMatchCharLength: 2
+    limit: 25
+    includeMatches: true # overlay fastsearch.js renders highlighted snippets from these
+    # weighted keys: exact/near title hits outrank fuzzy body hits
+    keys:
+      - name: title
+        weight: 4
+      - name: tags
+        weight: 3
+      - name: summary
+        weight: 2
+      - name: content
+        weight: 1
+      - name: permalink
+        weight: 1
 
   # giscus comments — setup steps in README.md ("Comments (giscus)" section)
   # NOTE: the giscus GitHub App must be installed on the repo (github.com/apps/giscus)

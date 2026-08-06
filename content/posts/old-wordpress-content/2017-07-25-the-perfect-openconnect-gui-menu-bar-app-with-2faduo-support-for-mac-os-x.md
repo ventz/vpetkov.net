@@ -21,9 +21,9 @@ At this point, you can run OpenConnect from a terminal, which works, but you hav
 
 Or, you can use my little solution which seems to work perfectly.
 
-![OpenConnect GUI - Connected](https://raw.githubusercontent.com/ventz/openconnect-gui-menu-bar/master/images/vpn-connected.png) 
+![OpenConnect GUI - Connected](/images/openconnect/vpn-connected.png) 
 
-![OpenConnect GUI - Disconnected](https://raw.githubusercontent.com/ventz/openconnect-gui-menu-bar/master/images/vpn-disconnected.png) 
+![OpenConnect GUI - Disconnected](/images/openconnect/vpn-disconnected.png) 
 
 Everything you need to get started is on GitHub:  
  <a href="https://github.com/ventz/openconnect-gui-menu-bar" target="_blank">https://github.com/ventz/openconnect-gui-menu-bar</a>

@@ -29,7 +29,7 @@ First of all, if you use the built-in "update" method, the updates need to be co
 
 Let's assume you just bought your Google Nexus S. It came with 2.3 (or 2.3.0 in reality). The first step is to apply the 2.3.1 update. I've called this:
 
-> <a href="http://blog.vpetkov.net/wp-content/uploads/2011/03/update1.zip" target="_blank">update1.zip</a> (md5: a35798d84104c7cb1d26d7946ce843fc)
+> <a href="/wp-content/uploads/2011/03/update1.zip" target="_blank">update1.zip</a> (md5: a35798d84104c7cb1d26d7946ce843fc)
 
 The general instructions are:
 
@@ -46,7 +46,7 @@ The general instructions are:
 
 Now, that said, after you apply the first update, you go from 2.3.0 to 2.3.1. Now, apply the 2.3.2 update. I've called this:
 
-> <a href="http://blog.vpetkov.net/wp-content/uploads/2011/03/update2.zip" target="_blank">update2.zip</a> (md5: 714e1e1126f1a222c10ffce6c83dc6ad)
+> <a href="/wp-content/uploads/2011/03/update2.zip" target="_blank">update2.zip</a> (md5: 714e1e1126f1a222c10ffce6c83dc6ad)
 
 Same as before. After you go through the steps and reboot, you will be at 2.3.2. Here is where things get interesting. It seems that you need another update. Its for people who get the "Status 7" error.  
 This is mostly due to a firmware (those who have: GRH78C or GRH78). Here you will need to apply the LAST UPDATE, the same way you applied update1 and update2:
@@ -67,11 +67,11 @@ ADDITIONAL INFORMATION AND FILES (If above did not work - very rare):
 
 Some people (very very rare) might still get an error. This is if you have a different radio version. Check: "Settings -> About Phone -> Baseband Version". You should have either something that ends in "XXKB1" or something that ends in "XXKB3". Here are the two radios. Apply this the same way as the items above. You might need this BEFORE the GRH78C (or  GRH78) updates.
 
-> [XXKB1-GRI40-radio-nexuss-unsigned.zip](http://blog.vpetkov.net/wp-content/uploads/2011/03/XXKB1-GRI40-radio-nexuss-unsigned.zip) (md5: 4805c255f10eef8b1bd54aa2d27bc30e)
+> [XXKB1-GRI40-radio-nexuss-unsigned.zip](/wp-content/uploads/2011/03/XXKB1-GRI40-radio-nexuss-unsigned.zip) (md5: 4805c255f10eef8b1bd54aa2d27bc30e)
 > 
 > or
 > 
-> [XXKB3-GRI54-radio-nexuss-unsigned.zip](http://blog.vpetkov.net/wp-content/uploads/2011/03/XXKB3-GRI54-radio-nexuss-unsigned.zip) (md5: 4e9c9cf4d6470be800e00f8508b9c175)
+> [XXKB3-GRI54-radio-nexuss-unsigned.zip](/wp-content/uploads/2011/03/XXKB3-GRI54-radio-nexuss-unsigned.zip) (md5: 4e9c9cf4d6470be800e00f8508b9c175)
 
 
 LAST RESORT (if nothing above worked - extremely rare):
