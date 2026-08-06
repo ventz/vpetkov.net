@@ -100,11 +100,14 @@ params:
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
 
+  # giscus comments — setup steps in README.md ("Comments (giscus)" section)
+  # NOTE: the giscus GitHub App must be installed on the repo (github.com/apps/giscus)
+  # dev values were: repo ventz/dev.vpetkov.net-comments, repoID R_kgDOLOT0og, categoryID DIC_kwDOLOT0os4Cc9yl
   giscus:
-    repo: "ventz/dev.vpetkov.net-comments"
-    repoID: "R_kgDOLOT0og"
+    repo: "ventz/vpetkov.net-comments"
+    repoID: "R_kgDOTv4u4w"
     category: "General"
-    categoryID: "DIC_kwDOLOT0os4Cc9yl"
+    categoryID: "DIC_kwDOTv4u484DCziF"
     mapping: "url"
     inputPosition: "top"
 

@@ -21,9 +21,9 @@ Whatever the solution was going to be, it had to be very open and customizable, 
 ## 3 Containers and 10 minutes is all you need
 
 To get this:  
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2016/08/docker_metrics01.png" alt="docker_metrics01" width="1398" height="678" class="alignnone size-full wp-image-896" />][1]
+[![Grafana dashboard showing Docker CPU, memory, and network metrics](https://blog.vpetkov.net/wp-content/uploads/2016/08/docker_metrics01.png)][1]
 
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2016/08/docker_metrics02.png" alt="docker_metrics02" width="300" height="124" class="alignnone size-medium wp-image-897" />][2]  
+[![Grafana Docker metrics dashboard thumbnail](https://blog.vpetkov.net/wp-content/uploads/2016/08/docker_metrics02.png)][2]  
 There are 3 components that are started via containers:
 
 Grafana (dashboard/visual metrics and analytics)  
@@ -145,7 +145,7 @@ d.) (InfluxDB Settings) Database: telegraf
 
 It should look like this:
 
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2016/08/grafana_data_source.png" alt="grafana_data_source" width="490" height="774" class="alignnone size-full wp-image-899" />][3]
+[![Grafana data source configuration screen for InfluxDB](https://blog.vpetkov.net/wp-content/uploads/2016/08/grafana_data_source.png)][3]
 
 ## That&#8217;s it! You are Done!
 
@@ -153,10 +153,10 @@ Now you can go to the top left menu -> Add a new Dashboard -> Add a panel, and s
 For Graph for example, under the Metrics tab, you can access all of the variables in a point and click method.
 
 Here&#8217;s a example to add a new graph on a new Row (after you create a Panel):  
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2016/08/add_graph.png" alt="add_graph" width="281" height="289" class="alignnone size-full wp-image-902" />][4]
+[![Grafana panel menu showing the Add Graph option](https://blog.vpetkov.net/wp-content/uploads/2016/08/add_graph.png)][4]
 
 And here&#8217;s an example of how you would modify the &#8220;search&#8221; by point and click:  
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2016/08/grafana_configure.png" alt="grafana_configure" width="760" height="272" class="alignnone size-full wp-image-900" />][5]
+[![Grafana graph configuration with the metrics query builder](https://blog.vpetkov.net/wp-content/uploads/2016/08/grafana_configure.png)][5]
 
 ## How I came to this solution (skip if you are not interested)
 

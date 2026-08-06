@@ -53,7 +53,7 @@ sh ventz-media-pi
 ```
 
 This will produce the following (click to see larger image):  
-[<img loading="lazy" decoding="async" src="https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-300x157.png" alt="" width="300" height="157" class="alignnone size-medium wp-image-1057" srcset="https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-300x157.png 300w, https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-1024x535.png 1024w, https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-768x401.png 768w, https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-1536x802.png 1536w, https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-2048x1069.png 2048w" sizes="(max-width: 300px) 100vw, 300px" />][1]
+[![Media Pi launcher showing Netflix, Hulu, Amazon Prime, and other streaming apps](https://blog.vpetkov.net/wp-content/uploads/2020/04/ventz-media-pi-300x157.png)][1]
 
 Reboot, and then from the **Application Menu** (top left) -> go to “**Internet**” -> open “**Chromium (Media Edition)**”
 
