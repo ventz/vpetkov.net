@@ -21,6 +21,8 @@ tags:
 **^^^ PLEASE USE POST USING ABOVE LINK FOR MY "ONE-LINE IT JUST WORKS" ^^^**  
 (IGNORE EVERYTHING BELLOW THIS AS IT'S THE ORIGINAL DEVELOPMENT WORK)
 
+<!--more-->
+
 ---
 
 **Everything from this point down is out of date as of: 3-30-2020**
@@ -49,8 +51,6 @@ It seems there are two main solutions out there: use an old (v51, 55, 56, 60) ve
 After a lot of research and trial and error, I discovered a much more elegant solution - use the extracted ChromeOS (armv7l - yay) binaries and insert them into Chromium + make everything think it's ChromeOS (user agent)
 
 ## Netflix/Hulu/Spotify with the Default Raspberry Pi Chromium Browser
-
-<!--more-->
 
 **Enough theory - let's do this in 2 quick steps!**  
 0.) If you have tried Netflix/etc already, open Chromium and clear your browser history + cookies. Otherwise it will cache the "failed" DRM components.

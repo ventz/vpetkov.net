@@ -18,10 +18,17 @@
     color: inherit;
 }
 
-/* Thematic breaks and images add noise, not preview value */
-.post-entry .entry-content hr,
-.post-entry .entry-content img {
+/* Thematic breaks add noise, not preview value */
+.post-entry .entry-content hr {
     display: none;
+}
+
+/* Images stay visible (screenshots are useful previews) but capped in size */
+.post-entry .entry-content img {
+    max-height: 240px;
+    max-width: 100%;
+    width: auto;
+    border-radius: var(--radius);
 }
 
 .post-entry .entry-content p {
