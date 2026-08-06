@@ -96,7 +96,9 @@ params:
     hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/ventz/vpetkov.net"
+    # PaperMod appends .File.Path (relative to content/), so this must point at
+    # the content dir on a branch: <repo>/blob/<branch>/content
+    URL: "https://github.com/ventz/vpetkov.net/blob/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 

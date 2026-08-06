@@ -12,18 +12,19 @@
          {{- else }}
          <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
          {{- end }}
-@@ -24,7 +27,9 @@
+@@ -24,7 +27,10 @@
      <span>
          Powered by
          <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
 -        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
 +        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> &
-+        {{- /* Ventz Changes: credit the customization overlay alongside Hugo/PaperMod */}}
-+        Ventz's Mods!
++        {{- /* Ventz Changes: credit the customization overlay alongside Hugo/PaperMod,
++               linking to the portable snapshot of it (ventz-mods/) in the site repo */}}
++        <a href="https://github.com/ventz/vpetkov.net/tree/main/ventz-mods" rel="noopener" target="_blank">Ventz's Mods</a>!
      </span>
  </footer>
  {{- end }}
-@@ -156,3 +161,13 @@
+@@ -156,3 +162,13 @@
      });
  </script>
  {{- end }}
