@@ -37,5 +37,5 @@ BUGS: There aren't any really, but I've noticed that If you receive multiple SMS
 
 Hope you enjoy, and as always, leave comments - both about things that work and things that don't.
 
- [1]: /wp-content/uploads/2012/02/Headphones.zip "Headphones.zip"
- [2]: /wp-content/uploads/2012/02/Headphones.zip "Headphones"
+ [1]: https://media.vpetkov.net/wp-content/uploads/2012/02/Headphones.zip "Headphones.zip"
+ [2]: https://media.vpetkov.net/wp-content/uploads/2012/02/Headphones.zip "Headphones"

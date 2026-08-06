@@ -55,13 +55,13 @@ After a lot of research and trial and error, I discovered a much more elegant so
 **Enough theory - let's do this in 2 quick steps!**  
 0.) If you have tried Netflix/etc already, open Chromium and clear your browser history + cookies. Otherwise it will cache the "failed" DRM components.
 
-**1.) Download the latest extracted ChromeOS [libwidevine](/wp-content/uploads/2020/03/libwidevinecdm.so_.zip) binary and extract it:**  
+**1.) Download the latest extracted ChromeOS [libwidevine](https://media.vpetkov.net/wp-content/uploads/2020/03/libwidevinecdm.so_.zip) binary and extract it:**  
 ```
 $ sudo su
 # cd /usr/lib/chromium-browser
-# wget /wp-content/uploads/2020/03/libwidevinecdm.so_.zip
+# wget https://media.vpetkov.net/wp-content/uploads/2020/03/libwidevinecdm.so_.zip
 # unzip libwidevinecdm.so_.zip && chmod 755 libwidevinecdm.so
-# wget /wp-content/uploads/2020/03/chromium-media-browser.desktop.zip
+# wget https://media.vpetkov.net/wp-content/uploads/2020/03/chromium-media-browser.desktop.zip
 # unzip chromium-media-browser.desktop.zip && mv chromium-media-browser.desktop /usr/share/applications
 ```
 
@@ -151,7 +151,7 @@ b.) Compile the binary with: **gcc get\_cdm\_version.c -o get\_cdm\_version -ldl
 
 If you want a binary version for some reason (I don't know why you would given python method), and you can't compile it yourself, and you trust me (why?!), feel free to grab my already compiled version:  
 ```
-$ wget /wp-content/uploads/2020/03/get_cdm_version.zip
+$ wget https://media.vpetkov.net/wp-content/uploads/2020/03/get_cdm_version.zip
 $ unzip -f get_cdm_version.zip
 $ chmod 755 get_cdm_version
 ```
@@ -166,6 +166,6 @@ d.) Run it
 
 ## (Optional) Older Versions
 Here are the last few OLDER versions in case you need them (note the unique date in the url):  
-[libwidevinecdm.so (2019/09)](/wp-content/uploads/2019/09/libwidevinecdm.so_.zip)  
-[libwidevinecdm.so (2019/08)](/wp-content/uploads/2019/08/libwidevinecdm.so_.zip)  
-[libwidevinecdm.so (2019/07)](/wp-content/uploads/2019/07/libwidevinecdm.so_.zip)
+[libwidevinecdm.so (2019/09)](https://media.vpetkov.net/wp-content/uploads/2019/09/libwidevinecdm.so_.zip)  
+[libwidevinecdm.so (2019/08)](https://media.vpetkov.net/wp-content/uploads/2019/08/libwidevinecdm.so_.zip)  
+[libwidevinecdm.so (2019/07)](https://media.vpetkov.net/wp-content/uploads/2019/07/libwidevinecdm.so_.zip)
