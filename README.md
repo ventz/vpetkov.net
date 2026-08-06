@@ -34,6 +34,8 @@ git submodule update --remote --merge themes/PaperMod
 #    theme's new version and re-apply the "Ventz Changes" blocks if upstream moved things.
 #    Start with layouts/_partials/header.html — it is a whole-file copy of the theme
 #    partial (only the logo aria-label removed) and goes stale first on theme updates.
+#    layouts/rss.xml and layouts/_partials/templates/opengraph.html are whole-file
+#    copies too (each differs from the theme by one Language.Locale line).
 ```
 
 Note: PaperMod migrated to Hugo's new template system (Hugo >= 0.146):
