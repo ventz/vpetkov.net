@@ -22,21 +22,30 @@ Three layers, each independently controlled:
 
 ## Updating the theme
 
+**Do it all from `themes/PaperMod` inside THIS repo** — the submodule is a full
+clone of the fork with push access, and its `upstream` remote is already wired.
+No separate checkout of `ventz/hugo-PaperMod` is needed anywhere else.
+
 ```sh
-# 1. Update the fork from upstream (in a fork checkout):
-git remote add upstream https://github.com/adityatelange/hugo-PaperMod.git  # once
+# 1. Update the fork from upstream (run inside themes/PaperMod):
+cd themes/PaperMod
 git fetch upstream && git merge --ff-only upstream/master && git push origin master
+cd ../..
 
-# 2. Pull the fork into this site:
-git submodule update --remote --merge themes/PaperMod
+# 2. Record the new theme commit in the site repo:
+git add themes/PaperMod   # then commit the pointer bump
 
-# 3. Re-check the overlay: diff each file in layouts/ and assets/css/ against the
-#    theme's new version and re-apply the "Ventz Changes" blocks if upstream moved things.
-#    Start with layouts/_partials/header.html — it is a whole-file copy of the theme
-#    partial (only the logo aria-label removed) and goes stale first on theme updates.
-#    layouts/rss.xml and layouts/_partials/templates/opengraph.html are whole-file
-#    copies too (each differs from the theme by one Language.Locale line).
+# 3. Re-apply the overlay onto the new theme version:
+./ventz-mods/reapply.sh   # 3-way merges every override; see ventz-mods/README.md
+
+# 4. Verify, then refresh the snapshot against the new theme commit:
+hugo server -D --disableFastRender
+./generate-ventz-mods.sh
 ```
+
+Overlay files most likely to need attention after an upstream jump (whole-file
+theme copies with one-line changes): `layouts/_partials/header.html`,
+`layouts/rss.xml`, `layouts/_partials/templates/opengraph.html`.
 
 Note: PaperMod migrated to Hugo's new template system (Hugo >= 0.146):
 `layouts/_default/*` -> `layouts/*`, `partials/` -> `_partials/`,
