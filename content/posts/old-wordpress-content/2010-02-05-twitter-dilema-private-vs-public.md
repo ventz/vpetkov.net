@@ -1,5 +1,5 @@
 ---
-title: Twitter Dilema – private vs public
+title: Twitter Dilema - private vs public
 author: Ventz
 type: posts
 date: 2010-02-05T07:56:27+00:00

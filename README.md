@@ -6,9 +6,9 @@ Hugo site for [vpetkov.net](https://vpetkov.net/), themed with a personal fork o
 
 Three layers, each independently controlled:
 
-1. **Content** — markdown under `content/` (this repo). Old WordPress posts live in
-   `content/posts/old-wordpress-content/` and are tagged `old-wordpress-blog`
-   (category `Old-WordPress-Blog`) as they get cleaned up.
+1. **Content** — markdown under `content/` (this repo). The 44 migrated WordPress
+   posts live in `content/posts/old-wordpress-content/`, tagged `old-wordpress-blog`
+   (category `Old-WordPress-Blog`).
 2. **Theme** — `themes/PaperMod` is a git submodule pointing at
    [ventz/hugo-PaperMod](https://github.com/ventz/hugo-PaperMod), a fork of
    [adityatelange/hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod).

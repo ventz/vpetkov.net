@@ -1,5 +1,5 @@
 ---
-title: Cloud Censorship – the real public cloud concern
+title: Cloud Censorship - the real public cloud concern
 author: Ventz
 type: posts
 date: 2010-12-04T01:01:31+00:00
@@ -19,9 +19,9 @@ tags:
 ---
 For anyone who has not been following what is going on with WikiLeaks, here is a good place to start:
 
-<a href="http://www.guardian.co.uk/media/2010/dec/03/wikileaks-us-censorship-row" data-versionurl="http://blog.vpetkov.net/amber/cache/04e8d7150dd9539c19b0e7138786b749/" data-versiondate="2020-04-05T07:48:29+00:00" data-amber-behavior="" target="_blank">http://www.guardian.co.uk/media/2010/dec/03/wikileaks-us-censorship-row </a>
+<http://www.guardian.co.uk/media/2010/dec/03/wikileaks-us-censorship-row>
 
-<a href="https://www.eff.org/deeplinks/2010/12/amazon-and-wikileaks-first-amendment-only-strong" target="_blank">https://www.eff.org/deeplinks/2010/12/amazon-and-wikileaks-first-amendment-only-strong</a>
+<https://www.eff.org/deeplinks/2010/12/amazon-and-wikileaks-first-amendment-only-strong>
 
 WikiLeaks is a "whistle blowing" website. A quick search about it brings you to:
 
@@ -29,7 +29,7 @@ WikiLeaks is a "whistle blowing" website. A quick search about it brings you to:
 
 This week WikiLeaks released some sensitive US documents:
 
-> The <a href="http://cablegate.wikileaks.org/" data-versionurl="http://blog.vpetkov.net/amber/cache/b84c10a2c658d6e2c9fb9817f8042428/" data-versiondate="2020-04-05T07:49:47+00:00" data-amber-behavior="">classified diplomatic cables</a> released by online whistleblower WikiLeaks and reported on by news organizations in the United States and Europe provided often unflattering assessments of foreign leaders, including those of Germany and Italy.
+> The [classified diplomatic cables](http://cablegate.wikileaks.org/) released by online whistleblower WikiLeaks and reported on by news organizations in the United States and Europe provided often unflattering assessments of foreign leaders, including those of Germany and Italy.
 > 
 > The cables also contained revelations about long-simmering nuclear trouble spots, detailing U.S., Israeli and Arab fears of Iran's growing nuclear program; U.S. concerns about Pakistan's atomic arsenal; and U.S. discussions about a united Korean peninsula as a long-term solution to North Korean aggression.
 > 
