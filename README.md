@@ -2,6 +2,19 @@
 
 Hugo site for [vpetkov.net](https://vpetkov.net/), themed with a personal fork of PaperMod.
 
+## The scripts — day-to-day driving
+
+| Script | What it does |
+|---|---|
+| `./new-post.sh "Title"` | New draft post in `content/posts/YYYY/MM/` (archetype pre-fills front matter) |
+| `./hugo-preview.sh` | Live preview at <http://localhost/> — drafts visible, browser opens |
+| `./r2-upload.sh file.png` | Upload media to R2, prints the `https://media.vpetkov.net/...` URL + markdown |
+| `./update-papermod.sh` | Pull upstream PaperMod into the fork, re-apply the overlay, refresh the snapshot |
+| `./generate-ventz-mods.sh` | Re-snapshot the customization overlay into `ventz-mods/` (run after overlay edits) |
+
+Publishing = set `draft: false` → commit → push (Cloudflare Pages builds and deploys).
+Details for each area are in the sections below.
+
 ## Architecture
 
 Three layers, each independently controlled:
