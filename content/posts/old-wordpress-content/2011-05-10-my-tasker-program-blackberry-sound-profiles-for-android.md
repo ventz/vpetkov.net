@@ -126,4 +126,4 @@ I&#8217;ve updated the zip pack with two additions: a task which will provide yo
 **
 
  [1]: http://blog.vpetkov.net/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles "http://blog.vpetkov.net/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles"
- [2]: http://blog.vpetkov.net/wp-content/uploads/2011/09/Blackberry_Sound_Profiles_for_Android.zip "Blackberry_Sound_Profiles_for_Android.zip"
+ [2]: /wp-content/uploads/2011/09/Blackberry_Sound_Profiles_for_Android.zip "Blackberry_Sound_Profiles_for_Android.zip"

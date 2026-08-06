@@ -34,6 +34,6 @@ Please just grab the FULL 2.3.3 (<a href="http://android.clients.google.com/pack
 
 IF YOU JUST WANT THE RADIO UPDATE:
 
-> <a href="http://blog.vpetkov.net/wp-content/uploads/2011/05/XXKD1-GRJ22-radio-nexuss-unsigned.zip" target="_blank">XXKD1-GRJ22-radio-nexuss-unsigned.zip</a> (md5: 57659f04148ebfa849ef523544f2a3dd)
+> <a href="/wp-content/uploads/2011/05/XXKD1-GRJ22-radio-nexuss-unsigned.zip" target="_blank">XXKD1-GRJ22-radio-nexuss-unsigned.zip</a> (md5: 57659f04148ebfa849ef523544f2a3dd)
 
 Note: I personally couldn&#8217;t update just the radio update from 2.3.3 (with GRI40) &#8211; kept getting the status 7 signature verification, so I used the 2.3.4 update to get the radio patches. I&#8217;ve seen people who have been able to apply the radio update to 2.3.3 without any problems.

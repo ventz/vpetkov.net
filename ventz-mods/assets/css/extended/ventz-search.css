@@ -1,0 +1,33 @@
+/* Ventz Changes (search): styling for the fastsearch.js overlay additions —
+   context snippets, <mark> highlights, and the live result-count status line.
+   Scoped to .searchResults / .searchbox only (see CLAUDE.md pitfall: bare
+   .entry-link rules leak into /archives/ and the theme). Highlight color uses
+   var(--accent-link) so dark mode gets the lighter a11y-safe red automatically. */
+
+.searchResults li {
+    flex-wrap: wrap; /* title + chevron on line 1, snippet drops below */
+}
+
+.searchResults .search-snippet {
+    flex-basis: 100%;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--secondary);
+    overflow-wrap: anywhere;
+}
+
+.searchResults mark,
+.searchResults .search-title mark {
+    background: none;
+    color: var(--accent-link);
+    font-weight: 700;
+}
+
+.searchbox .search-status {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--secondary);
+    min-height: 1.5em; /* reserve the line so results don't jump when count appears */
+}
