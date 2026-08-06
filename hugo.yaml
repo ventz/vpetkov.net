@@ -139,11 +139,19 @@ markup:
     # style: monokai
     #
 # https://gohugo.io/templates/rss/
+# llms.txt (theme ships layouts/llms.txt) — zero-cost AI-crawler index; no strategy built on it
+outputFormats:
+  llms:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+
 outputs:
   home:
     - html
     - rss
     - json
+    - llms
   section:
     - html
     - rss
