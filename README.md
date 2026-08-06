@@ -32,6 +32,8 @@ git submodule update --remote --merge themes/PaperMod
 
 # 3. Re-check the overlay: diff each file in layouts/ and assets/css/ against the
 #    theme's new version and re-apply the "Ventz Changes" blocks if upstream moved things.
+#    Start with layouts/_partials/header.html — it is a whole-file copy of the theme
+#    partial (only the logo aria-label removed) and goes stale first on theme updates.
 ```
 
 Note: PaperMod migrated to Hugo's new template system (Hugo >= 0.146):

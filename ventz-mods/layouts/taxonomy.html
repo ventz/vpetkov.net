@@ -58,6 +58,8 @@ let tagArray = new Array();
     if (cloudThemeToggle) {
         cloudThemeToggle.addEventListener("click", () => setTimeout(drawCloud, 0));
     }
+    // OS-level theme change while in auto mode (no toggle click)
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTimeout(drawCloud, 0));
 </script>
 {{- if .Title }}
 <header class="page-header">
