@@ -15,4 +15,16 @@
 {{ .Content }}
 </div>
 
+{{- /* Ventz Changes: list child sections/pages — documentation branch pages had
+       no links to their children (the layout rendered only .Content) */}}
+{{- with .Pages }}
+<nav class="post-content md-content" aria-label="Pages in this section">
+    <ul>
+        {{- range . }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{- end }}
+    </ul>
+</nav>
+{{- end }}
+
 {{- end }}{{/* end main */ -}}
