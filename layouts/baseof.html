@@ -23,7 +23,8 @@
 <body id="top">
 {{- end }}
     {{ partialCached "header.html" . .Page -}}
-    <main class="main">
+    {{- /* Ventz Changes: skip-link target (WCAG 2.4.1) */}}
+    <main class="main" id="main-content">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

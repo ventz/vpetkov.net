@@ -21,7 +21,7 @@ If you use Docker, you very quickly run into a common question: how do you make 
 
 One of the biggest benefits to using Docker Swarm is that it provides the standard Docker API, which means that all of the existing Docker management tools (and 3rd party products) just work out of the box as they do with a single host. The only difference is that they now scale transparently over multiple hosts.
 
-After reading up on it [HERE](https://docs.docker.com/swarm/) and [HERE](https://docs.docker.com/swarm/install-w-machine/), it was evident that this is a pretty simple service, but it wasn't 100% clear what went where. After searching around the web, I realized that almost all of the tutorials and examples on Docker Swarm involved either docker-machine or very convoluted examples which did not explain what was happening on which component. With that said, here is a very simple Docker Swarm Tutorial with some practical examples.
+After reading up on it in the [Docker Swarm overview](https://docs.docker.com/swarm/) and the [Swarm install guide](https://docs.docker.com/swarm/install-w-machine/), it was evident that this is a pretty simple service, but it wasn't 100% clear what went where. After searching around the web, I realized that almost all of the tutorials and examples on Docker Swarm involved either docker-machine or very convoluted examples which did not explain what was happening on which component. With that said, here is a very simple Docker Swarm Tutorial with some practical examples.
 
 Assuming you have a bunch of servers running docker:  
 vm01 (10.0.0.101), vm02 (10.0.0.102), vm03 (10.0.0.103), vm04 (10.0.0.104)
