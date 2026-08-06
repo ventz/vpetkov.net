@@ -74,6 +74,26 @@ Setting up a comments repo from scratch:
    `mapping: url` ties each thread to the page URL — don't change it after
    comments exist or existing threads orphan.
 
+## Media — Cloudflare R2 (media.vpetkov.net)
+
+Binary media (images, zips) lives in the `media-vpetkov-net` R2 bucket — NOT in git —
+served at `https://media.vpetkov.net/...` (custom domain; the r2.dev public dev URL is
+deliberately disabled). Legacy WordPress media sits under `wp-content/uploads/...`
+(same paths as the old blog); originals are also archived on the old server.
+
+Upload new media and get paste-ready URLs:
+
+```sh
+./r2-upload.sh screenshot.png              # -> https://media.vpetkov.net/blog/YYYY/MM/screenshot.png
+./r2-upload.sh -p diagrams arch.svg        # -> https://media.vpetkov.net/diagrams/arch.svg
+./r2-upload.sh -f screenshot.png           # overwrite an existing key
+```
+
+The script refuses to clobber existing keys unless `-f` is given, sets content types
+by extension, and prints a markdown-ready line per file. Credentials come from `.env`
+(gitignored; canonical copy: `<redacted>` —
+a Cloudflare API token scoped to Workers R2 Storage:Edit only).
+
 ## Deploy — Cloudflare Pages
 
 - Build command: `hugo --gc --minify`

@@ -15,9 +15,9 @@ tags:
   - tasker
 
 ---
-If you just started reading this directly and didn't read my "what is Tasker", please read my short post: (<http://blog.vpetkov.net/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/>)
+If you just started reading this directly and didn't read my "what is Tasker", please read my short post: ([vpetkov.net/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/](/2011/05/10/androids-best-app-tasker-visual-programming-and-automation/))
 
-If you are running ICS 4.0, please read: ([http://blog.vpetkov.net/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles][1])
+If you are running ICS 4.0, please read: ([/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles][1])
 
 **Don't let the length of this post scare you - I just wanted to provide the technical/developer details. You can get this to work in less than a couple of minutes by downloading the zip file and ONLY reading the "GETTING STARTED" section.**
 
@@ -126,5 +126,5 @@ I've updated the zip pack with two additions: a task which will provide you with
 **  
 **
 
- [1]: http://blog.vpetkov.net/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles "http://blog.vpetkov.net/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles"
+ [1]: /2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles "/2011/12/27/tasker-ics-android-4-0-blackberry-sound-profiles"
  [2]: https://media.vpetkov.net/wp-content/uploads/2011/09/Blackberry_Sound_Profiles_for_Android.zip "Blackberry_Sound_Profiles_for_Android.zip"

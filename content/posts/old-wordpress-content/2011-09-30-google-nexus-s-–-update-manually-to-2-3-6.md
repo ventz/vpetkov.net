@@ -24,7 +24,7 @@ If you are on GRJ22 (2.3.4), you can apply only the small update:
 
  
 
-Again, this is directly from google (it is even linked to google), and you should follow the 7 steps from the <http://blog.vpetkov.net/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/> article.
+Again, this is directly from google (it is even linked to google), and you should follow the 7 steps from the [vpetkov.net/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/](/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/) article.
 
 **Please note that the above update is the ~18MB update, and it will only work if you are on 2.3.4 GRJ22. This is NOT for people who are running jailbroken/custom roms.**
 

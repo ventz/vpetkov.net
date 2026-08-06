@@ -17,7 +17,7 @@ tags:
 ---
 The general idea behind this is that it utilizes my original Blackberry Sound Profiles for Android and it adds a "timer" element which can be set. Upon setting the timer, it will set a temporary task until the timer runs out. The idea came from one of my visitors who asked me how to do this. At first, I had no idea how to do it. About 30 minutes later I had a semi-working prototype. Another 3 hours later (had to figure out how Scenes worked and interacted with variables and the rest of the system) I had the final version with a working GUI.
 
-The first thing that you need are my Tasker Blackberry Sound Profiles found here: (<http://blog.vpetkov.net/2011/05/10/my-tasker-program-blackberry-sound-profiles-for-android>). If you don't have them yet, follow the super quick "Getting Started" section. Once you have the tasks and you have them working (if you want this to work out of the box, grab at least the "Work" task and the "Sleep" task), download the Timed extension:
+The first thing that you need are my Tasker Blackberry Sound Profiles found here: ([vpetkov.net/2011/05/10/my-tasker-program-blackberry-sound-profiles-for-android](/2011/05/10/my-tasker-program-blackberry-sound-profiles-for-android)). If you don't have them yet, follow the super quick "Getting Started" section. Once you have the tasks and you have them working (if you want this to work out of the box, grab at least the "Work" task and the "Sleep" task), download the Timed extension:
 
 Note: You need the current BETA to import this profile: http://tasker.dinglisch.net/beta.html (1.2.1b4m)
 

@@ -19,7 +19,7 @@ Since it seems like people are really interested in this information (especially
 
 > [a14a2dd09749.signed-soju-GRJ22-from-GRI40.a14a2dd0.zip](http://android.clients.google.com/packages/ota/google_crespo/a14a2dd09749.signed-soju-GRJ22-from-GRI40.a14a2dd0.zip) (md5: 92b0f0a0b57a7cf10d2d70610c8bb9fb)
 
-Again, this is directly from google (it is even linked to google), and you should follow the 7 steps from the <http://blog.vpetkov.net/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/> article.
+Again, this is directly from google (it is even linked to google), and you should follow the 7 steps from the [vpetkov.net/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/](/2011/03/11/google-nexus-s-update-manually-to-2-3-1-2-3-2-and-2-3-3/) article.
 
 Please note that the update WILL work if you are running "GRI40" (build number in Settings -> About Phone)  
 The biggest update when it comes to new features seems to be that Google Talk has voice chat! There are a lot of bug fixes.  
