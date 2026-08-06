@@ -22,9 +22,17 @@ Three layers, each independently controlled:
 
 ## Updating the theme
 
-**Do it all from `themes/PaperMod` inside THIS repo** — the submodule is a full
-clone of the fork with push access, and its `upstream` remote is already wired.
-No separate checkout of `ventz/hugo-PaperMod` is needed anywhere else.
+**One command:**
+
+```sh
+./update-papermod.sh   # fetch upstream -> ff the fork -> push -> stage pointer ->
+                       # reapply overlay -> refresh snapshot (stages, never commits)
+```
+
+It refuses to run on a dirty submodule, auto-adds the `upstream` remote on fresh
+clones, and exits early when already up to date. The manual equivalent, all from
+`themes/PaperMod` inside THIS repo (the submodule is a full clone of the fork
+with push access — no separate checkout of `ventz/hugo-PaperMod` is needed):
 
 ```sh
 # 1. Update the fork from upstream (run inside themes/PaperMod):

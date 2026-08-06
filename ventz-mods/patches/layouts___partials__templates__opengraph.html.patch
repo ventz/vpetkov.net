@@ -1,0 +1,17 @@
+--- a/layouts/_partials/templates/opengraph.html
++++ b/layouts/_partials/templates/opengraph.html
+@@ -1,3 +1,4 @@
++{{- /* Ventz Changes: theme copy; only change is site.Language.Locale replacing the .LanguageCode accessor deprecated in Hugo 0.158 */}}
+ <meta property="og:url" content="{{ .Permalink }}">
+ 
+ {{- with or site.Title site.Params.title | plainify }}
+@@ -12,7 +13,8 @@
+   <meta property="og:description" content="{{ trim . "\n\r\t " }}">
+ {{- end }}
+ 
+-{{- with or .Params.locale site.Language.LanguageCode }}
++{{- /* Ventz Changes: site.Language.Locale replaces .LanguageCode (deprecated in Hugo 0.158) */}}
++{{- with or .Params.locale site.Language.Locale }}
+   <meta property="og:locale" content="{{ replace . `-` `_` }}">
+ {{- end }}
+ 

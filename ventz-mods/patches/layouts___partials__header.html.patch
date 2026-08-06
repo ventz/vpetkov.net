@@ -1,0 +1,26 @@
+--- a/layouts/_partials/header.html
++++ b/layouts/_partials/header.html
+@@ -1,3 +1,7 @@
++{{- /* Ventz Changes (a11y): theme copy with aria-label removed from the alt="" logo imgs (prohibited on presentational images) */ -}}
++{{- /* Ventz Changes: skip navigation link (WCAG 2.4.1) — first focusable element,
++       visually hidden until focused (assets/css/extended/ventz-a11y.css) */}}
++<a class="skip-link" href="#main-content">Skip to main content</a>
+ <header class="header">
+     <nav class="header-nav">
+         <div class="logo">
+@@ -19,10 +23,13 @@
+                             {{- $img = $img.Resize "x30" }}
+                         {{- end }}
+                     {{- end }}
+-                    <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
++                    {{- /* Ventz Changes (a11y): dropped aria-label="logo" — ARIA labels are
++                           prohibited on alt="" presentational images */}}
++                    <img src="{{ $img.Permalink }}" alt=""
+                         height="{{- site.Params.label.iconHeight | default "30" -}}">
+                 {{- else }}
+-                <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
++                {{- /* Ventz Changes (a11y): dropped aria-label="logo" (see above) */}}
++                <img src="{{- site.Params.label.icon | absURL -}}" alt=""
+                     height="{{- site.Params.label.iconHeight | default "30" -}}">
+                 {{- end -}}
+                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}

@@ -23,9 +23,12 @@
                             {{- $img = $img.Resize "x30" }}
                         {{- end }}
                     {{- end }}
+                    {{- /* Ventz Changes (a11y): dropped aria-label="logo" — ARIA labels are
+                           prohibited on alt="" presentational images */}}
                     <img src="{{ $img.Permalink }}" alt=""
                         height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- else }}
+                {{- /* Ventz Changes (a11y): dropped aria-label="logo" (see above) */}}
                 <img src="{{- site.Params.label.icon | absURL -}}" alt=""
                     height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- end -}}

@@ -91,7 +91,7 @@
     */
 }
 
-/* Ventz Changes: ADDED Dark Code Block on Main page preview */
+/* Ventz Changes BEGIN: ADDED Dark Code Block on Main page preview */
 .entry-content .highlight {
     display: grid;
     margin: auto 0;
@@ -109,6 +109,7 @@
     padding: 10px;
     overflow-x: auto;
 }
+/* Ventz Changes END */
 
 .home-info .entry-content p {
     margin-block-start: 1em;
@@ -123,8 +124,9 @@
     font-weight: 400;
 }
 
-/* Theme behavior for archive entries and search results, which still emit the
-   empty overlay anchor (archives.html / fastsearch.js) and focus it directly */
+/* Ventz Changes: comment only — theme rule left intact. It still serves archive
+   entries and search results, which emit the empty overlay anchor
+   (archives.html / fastsearch.js) and focus it directly. See CLAUDE.md pitfall #6. */
 .entry-link {
     position: absolute;
     left: 0;
@@ -134,7 +136,7 @@
     border-radius: var(--radius);
 }
 
-/* Ventz Changes (a11y): on list cards only, the link lives on the title; its ::after
+/* Ventz Changes (a11y) BEGIN: on list cards only, the link lives on the title; its ::after
    expands the hit area over the card while inner summary links/code stay clickable */
 .post-entry .entry-link {
     position: static;
@@ -149,15 +151,16 @@
     z-index: 0;
 }
 
-/* Only interactive descendants rise above the hit area — plain summary text
-   still falls through, so the whole card keeps navigating on click */
+/* Ventz Changes (a11y): only interactive descendants rise above the hit area — plain
+   summary text still falls through, so the whole card keeps navigating on click */
 .entry-content a,
 .entry-content pre {
     position: relative;
     z-index: 1;
 }
+/* Ventz Changes END */
 
-/* Ventz Changes (a11y): honor reduced-motion for card lift and TOC expansion */
+/* Ventz Changes (a11y) BEGIN: honor reduced-motion for card lift and TOC expansion */
 @media (prefers-reduced-motion: reduce) {
     .post-entry {
         transition: none;
@@ -172,12 +175,14 @@
         transition: none;
     }
 }
+/* Ventz Changes END */
 
 .entry-hint {
     color: var(--secondary);
 }
 
-/* Ventz Changes: Added .entry-header, the .date-container, and * the .day and .month-year */
+/* Ventz Changes BEGIN: Added .entry-header, the .date-container, and the .day / .month-year
+   (the red date block on list cards; markup comes from layouts/list.html) */
 .entry-header {
     display: flex;
     text-align: center;
@@ -187,7 +192,9 @@
     border-radius: 3px;
 }
 
-/* Ventz Changes: Added the .date-container block - Green background date block */
+/* Ventz Changes: Added the .date-container block - solid red date square with white
+   text (was green #7ab80e). Literal red is intentional here: it is a background
+   behind white text, not a link color, so it is exempt from the --accent-link rule. */
 .entry-header .date-container {
     /*background-color: #7ab80e;*/
     background-color: rgb(155, 34, 44);
@@ -214,7 +221,7 @@
     display: inline;
     font-size: 0.8em; /* Adjust as needed */
 }
-
+/* Ventz Changes END */
 
 .entry-hint-parent {
     /* Ventz Changes: Added text-align left to make text even */

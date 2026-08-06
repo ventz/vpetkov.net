@@ -5,20 +5,21 @@
     border-bottom: 1px solid var(--tertiary);
 }
 
-/* Ventz Changes: Added this section */
+/* Ventz Changes BEGIN: added section — RED accent for header links */
 .post-header a {
-    /* Ventz Changes: ADDED RED Color for links */
     /*color: rgb(210, 53, 62);*/
     color: var(--accent-link);
 }
+/* Ventz Changes END */
 
-/* Ventz Changes: Added this section */
+/* Ventz Changes BEGIN: added section — heavier weight for the post date */
 .post-header span {
-    /* Ventz Changes: ADDED Heavier Color for date */
     font-weight: bold;
 }
+/* Ventz Changes END */
 
 .post-title {
+    /* Ventz Changes: ADDED margin-bottom to tighten title/date spacing */
     margin-bottom: 2px;
     /* Ventz Changes: Made Post Title Smaller: 40px; */
     font-size: 32px;
@@ -78,10 +79,11 @@ details.toc {
     background: var(--code-bg);
     border-radius: var(--radius);
     border: 1px solid var(--border);
+    /* Ventz Changes: ADDED padding so the TOC text isn't flush to its border */
     padding: 0.4em;
 }
 
-/* Ventz Changes: Floating TOC sidebar to the right of the post.
+/* Ventz Changes BEGIN: Floating TOC sidebar to the right of the post.
    (a11y) Only where it fully fits — below 1360px it caused horizontal page
    scrolling (WCAG 1.4.10); narrower viewports fall back to the in-flow TOC.
    Sticky (not absolute) so it follows the reader down the post; floated out
@@ -99,6 +101,7 @@ details.toc {
         z-index: 1000;
     }
 }
+/* Ventz Changes END */
 
 [data-theme="dark"] details.toc {
     background: var(--entry);
@@ -146,11 +149,12 @@ details .inner {
     padding-bottom: 0.6rem;
 }
 
-/* Ventz Changes: tighter TOC inner spacing */
+/* Ventz Changes BEGIN: tighter TOC inner spacing */
 details.toc .inner {
     margin: 0 20px;
     padding: 10px 20px;
 }
+/* Ventz Changes END */
 
 details li ul {
     margin-inline-start: var(--gap);
