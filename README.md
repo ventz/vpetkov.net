@@ -74,6 +74,26 @@ Setting up a comments repo from scratch:
    `mapping: url` ties each thread to the page URL — don't change it after
    comments exist or existing threads orphan.
 
+## Writing a post
+
+```sh
+./new-post.sh "My Cool Hack"     # -> content/posts/YYYY/MM/my-cool-hack.md (draft: true)
+./hugo-preview.sh                # live preview at http://localhost/ (drafts included)
+```
+
+The `YYYY/MM/` folder is organizational only — the published URL comes from the
+`date` front matter via the permalink config: `/YYYY/MM/DD/my-cool-hack/`.
+The archetype (`archetypes/posts.md`) pre-fills title/date/tags/description and
+starts every post as `draft: true`; flip to `draft: false` to publish.
+
+**The whole loop, including images:**
+
+1. `./new-post.sh "Title"` and write the post
+2. `./r2-upload.sh screenshot.png` → paste the printed
+   `![](https://media.vpetkov.net/blog/YYYY/MM/screenshot.png)` line into the markdown
+3. `./hugo-preview.sh` to check it
+4. Set `draft: false` → commit → push — Cloudflare Pages builds and deploys automatically
+
 ## Media — Cloudflare R2 (media.vpetkov.net)
 
 Binary media (images, zips) lives in the `media-vpetkov-net` R2 bucket — NOT in git —
