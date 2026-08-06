@@ -47,6 +47,31 @@ The overlay already follows the new structure.
 hugo server -D --disableFastRender
 ```
 
+## Comments (giscus)
+
+Comments are GitHub Discussions on [ventz/vpetkov.net-comments](https://github.com/ventz/vpetkov.net-comments),
+rendered by [giscus](https://giscus.app/). The embed is our overlay partial
+`layouts/_partials/comments.html` (theme-synced to PaperMod's light/dark toggle);
+all settings live in `hugo.yaml` under `params.giscus`.
+
+Setting up a comments repo from scratch:
+
+1. Create a **public** GitHub repo (private repos don't work with giscus):
+   `gh repo create ventz/<name> --public --add-readme`
+2. Enable Discussions on it:
+   `gh api -X PATCH repos/ventz/<name> -f has_discussions=true`
+3. Install the giscus GitHub App on that repo (manual, browser):
+   <https://github.com/apps/giscus> → Configure → select the repo.
+4. Get the IDs for `hugo.yaml`:
+   - `repoID`: `gh api repos/ventz/<name> --jq .node_id`
+   - `categoryID`: `gh api graphql -f query='query { repository(owner:"ventz", name:"<name>") { discussionCategories(first:10) { nodes { id name } } } }'`
+     (use the **General** category — or create an "Announcements-type" category so
+     only giscus can open threads)
+   - Alternatively paste the repo into <https://giscus.app/> and copy the generated values.
+5. Update `params.giscus` in `hugo.yaml`: `repo`, `repoID`, `category`, `categoryID`.
+   `mapping: url` ties each thread to the page URL — don't change it after
+   comments exist or existing threads orphan.
+
 ## Deploy — Cloudflare Pages
 
 - Build command: `hugo --gc --minify`
