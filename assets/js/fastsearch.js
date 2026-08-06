@@ -17,7 +17,7 @@ let currentElement = null;
 let firstResult = null;
 let lastResult = null;
 
-// Ventz Changes: live status line ("N results" / "No results"), created here so
+// Ventz Changes BEGIN: live status line ("N results" / "No results"), created here so
 // the theme's search.html template needs no overlay.
 let statusLine = null;
 const ensureStatusLine = () => {
@@ -38,6 +38,7 @@ const setStatus = (text) => {
         statusLine.textContent = text;
     }
 };
+// Ventz Changes END
 
 const defaultFuseOptions = {
     distance: 100,
@@ -79,7 +80,7 @@ const reset = () => {
     firstResult = null;
     lastResult = null;
     resList.innerHTML = '';
-    setStatus('');
+    setStatus(''); // Ventz Changes: clear the status line along with the results
     sInput.value = '';
     sInput.focus();
 };
@@ -96,7 +97,7 @@ const setActiveResult = (element) => {
     currentElement = element;
 };
 
-// Ventz Changes: highlight helpers. Fuse match indices are inclusive [from, to]
+// Ventz Changes BEGIN: highlight helpers. Fuse match indices are inclusive [from, to]
 // pairs into the ORIGINAL string; window [start, end) clips them for snippets.
 // DOM is built from text nodes + <mark> elements — post content never touches innerHTML.
 const highlightedFragment = (text, indices, start, end) => {
@@ -128,7 +129,7 @@ const highlightedFragment = (text, indices, start, end) => {
 const longestIndexPair = (indices) =>
     indices.reduce((best, pair) => (pair[1] - pair[0] > best[1] - best[0] ? pair : best));
 
-// Ventz Changes: build the context snippet for one result — prefers a body/summary
+// Ventz Changes (cont.): build the context snippet for one result — prefers a body/summary
 // match; falls back to a matched tag so tag-only hits still explain themselves.
 const SNIPPET_BEFORE = 50;
 const SNIPPET_LENGTH = 160;
@@ -176,6 +177,7 @@ const buildSnippet = (result) => {
 
     return null;
 };
+// Ventz Changes END
 
 const renderResults = (results) => {
     if (!Array.isArray(results) || results.length === 0) {
@@ -189,7 +191,7 @@ const renderResults = (results) => {
     for (const result of results) {
         const li = document.createElement('li');
 
-        // Ventz Changes: title is a span (was a bare text node) so title matches highlight
+        // Ventz Changes BEGIN: title is a span (was a bare text node) so title matches highlight
         const title = document.createElement('span');
         title.className = 'search-title';
         const titleMatch = (result.matches ?? []).find((m) => m.key === 'title');
@@ -200,6 +202,7 @@ const renderResults = (results) => {
         } else {
             title.textContent = result.item.title;
         }
+        // Ventz Changes END
 
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('width', '24');
@@ -221,11 +224,12 @@ const renderResults = (results) => {
 
         li.appendChild(title);
         li.appendChild(svg);
-        // Ventz Changes: context snippet with highlighted match
+        // Ventz Changes BEGIN: context snippet with highlighted match
         const snippet = buildSnippet(result);
         if (snippet) {
             li.appendChild(snippet);
         }
+        // Ventz Changes END
         li.appendChild(link);
         fragment.appendChild(li);
     }
@@ -244,7 +248,7 @@ const performSearch = () => {
     const query = sInput.value.trim();
     if (!query) {
         renderResults([]);
-        setStatus('');
+        setStatus(''); // Ventz Changes: empty query clears the status line too
         return;
     }
 
@@ -252,12 +256,13 @@ const performSearch = () => {
     const results = searchOptions ? fuse.search(query, searchOptions) : fuse.search(query);
     renderResults(results);
 
-    // Ventz Changes: result count / no-results feedback
+    // Ventz Changes BEGIN: result count / no-results feedback
     if (results.length === 0) {
         setStatus(`No results for “${query}”`);
     } else {
         setStatus(`${results.length} result${results.length === 1 ? '' : 's'}`);
     }
+    // Ventz Changes END
 };
 
 const initSearch = async () => {

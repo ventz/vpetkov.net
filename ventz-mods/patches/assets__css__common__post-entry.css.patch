@@ -1,0 +1,177 @@
+--- a/assets/css/common/post-entry.css
++++ b/assets/css/common/post-entry.css
+@@ -46,12 +46,19 @@
+ 
+ .post-entry {
+     position: relative;
+-    margin-bottom: var(--gap);
++    /* Ventz Changes: Added --post-gap instead of --gap to make space bigger between posts */
++    margin-bottom: var(--post-gap);
+     padding: var(--gap);
+     background: var(--entry);
+     border-radius: var(--radius);
+     transition: transform 0.25s ease;
+     border: 1px solid var(--border);
++    /* Ventz Changes: ADDED Shaddow to bottom and right of entries */
++    /*box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2), 0px 4px 6px -2px rgba(0,0,0,0.05);*/
++    box-shadow: 0px 10px 15px -8px rgba(0,0,0,0.2);
++    /* Shaddow on top */
++    /*box-shadow: 0px -10px 5px -3px rgba(0,0,0,0.2), 0px -4px 6px -2px rgba(0,0,0,0.05);*/
++
+ }
+ 
+ .post-entry:hover,
+@@ -72,14 +79,38 @@
+ .entry-content {
+     margin: 8px 0;
+     color: var(--secondary);
+-    font-size: 14px;
++    /* Ventz Changes: Made Text Larger: 14px */
++    font-size: 16px;
+     line-height: 1.6;
++    /* Ventz Changes: show full summary — no clamping/truncation */
++    /*
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 2;
++    */
+ }
+ 
++/* Ventz Changes BEGIN: ADDED Dark Code Block on Main page preview */
++.entry-content .highlight {
++    display: grid;
++    margin: auto 0;
++    border-top: 1px solid var(--border);
++    border-bottom: 1px solid var(--border);
++    background: var(--code-block-bg) !important;
++    border-radius: var(--radius);
++}
++
++/* Ventz Changes: scroll long code lines in previews — PaperMod's overflow rules
++   are scoped to .md-content (single pages) and never reach list entries.
++   Covers both Chroma-wrapped (.highlight pre) and bare pre (no-language fences). */
++.entry-content pre {
++    margin: 0;
++    padding: 10px;
++    overflow-x: auto;
++}
++/* Ventz Changes END */
++
+ .home-info .entry-content p {
+     margin-block-start: 1em;
+     margin-block-end: 1em;
+@@ -87,9 +118,15 @@
+ 
+ .entry-footer {
+     color: var(--secondary);
+-    font-size: 13px;
++    /* Ventz Changes: Made Footer Larger: 13px */
++    font-size: 14px;
++    font-style: italic;
++    font-weight: 400;
+ }
+ 
++/* Ventz Changes: comment only — theme rule left intact. It still serves archive
++   entries and search results, which emit the empty overlay anchor
++   (archives.html / fastsearch.js) and focus it directly. See CLAUDE.md pitfall #6. */
+ .entry-link {
+     position: absolute;
+     left: 0;
+@@ -99,11 +136,96 @@
+     border-radius: var(--radius);
+ }
+ 
++/* Ventz Changes (a11y) BEGIN: on list cards only, the link lives on the title; its ::after
++   expands the hit area over the card while inner summary links/code stay clickable */
++.post-entry .entry-link {
++    position: static;
++    color: inherit;
++}
++
++.post-entry .entry-link::after {
++    content: "";
++    position: absolute;
++    inset: 0;
++    border-radius: var(--radius);
++    z-index: 0;
++}
++
++/* Ventz Changes (a11y): only interactive descendants rise above the hit area — plain
++   summary text still falls through, so the whole card keeps navigating on click */
++.entry-content a,
++.entry-content pre {
++    position: relative;
++    z-index: 1;
++}
++/* Ventz Changes END */
++
++/* Ventz Changes (a11y) BEGIN: honor reduced-motion for card lift and TOC expansion */
++@media (prefers-reduced-motion: reduce) {
++    .post-entry {
++        transition: none;
++    }
++
++    .post-entry:hover,
++    .post-entry:focus-within {
++        transform: none;
++    }
++
++    details::details-content {
++        transition: none;
++    }
++}
++/* Ventz Changes END */
++
+ .entry-hint {
+     color: var(--secondary);
+ }
+ 
++/* Ventz Changes BEGIN: Added .entry-header, the .date-container, and the .day / .month-year
++   (the red date block on list cards; markup comes from layouts/list.html) */
++.entry-header {
++    display: flex;
++    text-align: center;
++    padding: 8px 0;
++    /*-moz-border-radius: 3px;
++    -webkit-border-radius: 3px;*/
++    border-radius: 3px;
++}
++
++/* Ventz Changes: Added the .date-container block - solid red date square with white
++   text (was green #7ab80e). Literal red is intentional here: it is a background
++   behind white text, not a link color, so it is exempt from the --accent-link rule. */
++.entry-header .date-container {
++    /*background-color: #7ab80e;*/
++    background-color: rgb(155, 34, 44);
++    width: 80px; /* Set to desired square size */
++    height: 80px; /* Same value as width to create a square */
++    display: flex;
++    margin-right: 20px; /* Adjust the value as needed to achieve the desired spacing */
++    flex-shrink: 0; /* Prevents the box from shrinking */
++    flex-direction: column; /* Stack children vertically */
++    justify-content: center; /* Center content vertically */
++    align-items: center; /* Center content horizontally */
++    border-radius: 3px;
++    color: white;
++    text-align: center;
++}
++
++.entry-header .day {
++    display: block;
++    font-size: 2em; /* Adjust as needed */
++    margin: 0; /* Removes any default margin */
++}
++
++.entry-header .month-year {
++    display: inline;
++    font-size: 0.8em; /* Adjust as needed */
++}
++/* Ventz Changes END */
++
+ .entry-hint-parent {
++    /* Ventz Changes: Added text-align left to make text even */
++    text-align: left;
+     display: flex;
+     justify-content: space-between;
+ }

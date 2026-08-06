@@ -1,0 +1,39 @@
+--- a/layouts/_partials/footer.html
++++ b/layouts/_partials/footer.html
+@@ -2,7 +2,10 @@
+ <footer class="footer">
+     {{- if not site.Params.footer.hideCopyright }}
+         {{- if site.Copyright }}
+-        <span>{{ site.Copyright | markdownify }}</span>
++        {{- /* Ventz Changes: expand a {year} placeholder in site.Copyright and prefix
++               the © glyph ourselves, instead of markdownify'ing the raw string */}}
++        <!--<span>{{ site.Copyright | markdownify }}</span>-->
++        <span>&copy; {{ replace .Site.Copyright "{year}" now.Year }} </span>
+         {{- else }}
+         <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
+         {{- end }}
+@@ -24,7 +27,9 @@
+     <span>
+         Powered by
+         <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
++        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> &
++        {{- /* Ventz Changes: credit the customization overlay alongside Hugo/PaperMod */}}
++        Ventz's Mods!
+     </span>
+ </footer>
+ {{- end }}
+@@ -156,3 +161,13 @@
+     });
+ </script>
+ {{- end }}
++
++{{- /* Ventz Changes (a11y): bare <pre> blocks (no-language fences) get overflow-x
++     scrolling from CSS but no tabindex from Chroma — make scrollable ones focusable */}}
++<script>
++    document.querySelectorAll("pre:not([tabindex])").forEach((p) => {
++        if (p.scrollWidth > p.clientWidth) {
++            p.tabIndex = 0;
++        }
++    });
++</script>

@@ -2,6 +2,8 @@
 <footer class="footer">
     {{- if not site.Params.footer.hideCopyright }}
         {{- if site.Copyright }}
+        {{- /* Ventz Changes: expand a {year} placeholder in site.Copyright and prefix
+               the © glyph ourselves, instead of markdownify'ing the raw string */}}
         <!--<span>{{ site.Copyright | markdownify }}</span>-->
         <span>&copy; {{ replace .Site.Copyright "{year}" now.Year }} </span>
         {{- else }}
@@ -26,6 +28,7 @@
         Powered by
         <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> &
+        {{- /* Ventz Changes: credit the customization overlay alongside Hugo/PaperMod */}}
         Ventz's Mods!
     </span>
 </footer>

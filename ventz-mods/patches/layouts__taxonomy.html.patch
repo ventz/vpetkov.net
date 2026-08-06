@@ -1,0 +1,99 @@
+--- a/layouts/taxonomy.html
++++ b/layouts/taxonomy.html
+@@ -1,5 +1,96 @@
+ {{- define "main" }}
+ 
++<!-- Credit to:
++     https://blog.cubieserver.de/2020/adding-a-tag-cloud-to-my-hugo-blog/
++     and
++     https://github.com/timdream/wordcloud2.js
++-->
++{{- /* Ventz Changes (a11y): the cloud is a visual duplicate of the accessible tag list
++     below — hidden from AT and tab order; mouse clicks on words still work */}}
++{{- /* Ventz Changes: only emit the cloud (and its 37KB library) when there are terms */}}
++{{- with .Data.Terms }}
++<div id="tag-wrapper" aria-hidden="true" style="width: 100%; height: 50vh;"></div>
++<script src="/js/wordcloud2.js"></script>
++<script>
++// Ventz Changes: ordered by count DESC — wordcloud2 places words in array order, so
++// the biggest tags must go first or they get crowded out to the edges (or dropped).
++// Permalinks come from Hugo rather than being string-built as `/tags/${word}/`, which
++// would break for any tag that isn't already a lowercase slug (spaces, caps, dots).
++const tagArray = [];
++const tagLinks = new Map();
++{{- range .ByCount }}
++    {{- $name := .Name }}{{ $count := .Count }}
++    {{- with .Page }}
++    tagArray.push([{{ $name }}, {{ $count }}]);
++    tagLinks.set({{ $name }}, {{ .Permalink }});
++    {{- end }}
++{{- end }}
++</script>
++<script>
++    // https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md
++    // Ventz Changes (a11y): replaced 'random-dark' colors (unverifiable contrast, failed
++    // Lighthouse) with theme-aware palettes measured >= 4.5:1 on the page background,
++    // added a size floor (rare tags rendered at 5px), and re-render on theme toggle.
++    const cloudPalettes = {
++        light: ["#9b222c", "#1a5fb4", "#1c7a43", "#7a4a9e", "#9a5b00", "#0e7490", "#555555"],
++        dark:  ["#e06c75", "#7fb3f0", "#7dc98a", "#c9a1f0", "#e0b05e", "#5fd0dd", "#b0b3b8"],
++    };
++
++    const currentPalette = () =>
++        cloudPalettes[document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"];
++
++    const tagCanvas = document.querySelector("#tag-wrapper"); // select your element to draw in
++
++    function drawCloud() {
++        const palette = currentPalette();
++        WordCloud(tagCanvas, {
++            list: tagArray,
++            // was weightFactor: 5 flat — sqrt scale keeps big tags big, floors 1-count tags at ~20px
++            weightFactor: (count) => 12 + 8 * Math.sqrt(count),
++            backgroundColor: 'transparent',
++            // deterministic per word, so colors are stable across renders
++            color: (word) => palette[[...word].reduce((a, c) => a + c.charCodeAt(0), 0) % palette.length],
++            classes: "tag-cloud-item", // add a class to each tag element so we can easily loop over it
++        });
++    }
++
++    tagCanvas.addEventListener('wordcloudstop', function (e) {
++        // loop over all added elements (by class name)
++        document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
++            const word = element.textContent;
++            // Ventz Changes: build the anchor with createElement (was innerHTML string
++            // interpolation) and use Hugo's real permalink, so odd tag names can't
++            // produce a broken href or inject markup.
++            const href = tagLinks.get(word);
++            if (!href) {
++                return;
++            }
++            const link = document.createElement("a");
++            link.href = href;
++            link.style.color = "inherit";
++            link.tabIndex = -1;   // cloud is aria-hidden; the list below is the real nav
++            link.textContent = word;
++            element.replaceChildren(link);
++        });
++    });
++
++    drawCloud();
++    const cloudThemeToggle = document.querySelector("#theme-toggle");
++    if (cloudThemeToggle) {
++        cloudThemeToggle.addEventListener("click", () => setTimeout(drawCloud, 0));
++    }
++    // OS-level theme change while in auto mode (no toggle click)
++    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTimeout(drawCloud, 0));
++
++    // Ventz Changes: the cloud is laid out once for the width at load time — reflow it
++    // on resize/orientation change (debounced) so it doesn't stay clipped or sparse.
++    let cloudResizeTimer;
++    window.addEventListener("resize", () => {
++        clearTimeout(cloudResizeTimer);
++        cloudResizeTimer = setTimeout(drawCloud, 200);
++    });
++</script>
++{{- end }}
+ {{- if .Title }}
+ <header class="page-header">
+     <h1>{{ .Title }}</h1>

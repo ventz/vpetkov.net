@@ -57,12 +57,13 @@
     margin-bottom: var(--content-gap);
 }
 
-/* Ventz Changes: ADDED font-size */
+/* Ventz Changes BEGIN: ADDED font-size */
 .md-content p,
 .md-content figure,
 .md-content ul {
     font-size: 20px;
 }
+/* Ventz Changes END */
 
 .md-content ol,
 .md-content ul {
@@ -268,10 +269,11 @@ video {
     max-width: 100%;
 }
 
-/* Ventz Changes (a11y): copy-code is hover-only in the theme (display:none removes it
+/* Ventz Changes (a11y) BEGIN: copy-code is hover-only in the theme (display:none removes it
    from the tab order); reveal it for keyboard focus too */
 div.highlight:focus-within .copy-code,
 pre:focus-within .copy-code,
 .copy-code:focus-visible {
     display: block;
 }
+/* Ventz Changes END */

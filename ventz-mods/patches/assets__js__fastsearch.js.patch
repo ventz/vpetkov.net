@@ -1,0 +1,202 @@
+--- a/assets/js/fastsearch.js
++++ b/assets/js/fastsearch.js
+@@ -1,3 +1,11 @@
++// Ventz Changes: overlay of themes/PaperMod/assets/js/fastsearch.js.
++// Additions over the theme version, all driven by fuseOpts.includeMatches:
++//   1. Highlighted context snippets under each result (matched text in <mark>)
++//   2. Title-match highlighting
++//   3. A live status line: result count / "No results for X" (aria-live for a11y)
++// Keeps the theme's li > [title, svg, .entry-link] structure intact — the empty
++// overlay .entry-link anchor is focused directly by keyboard nav (see CLAUDE.md
++// pitfall about .entry-link producers) — the snippet is inserted before it.
+ import * as params from '@params';
+ 
+ const resList = document.getElementById('searchResults');
+@@ -9,6 +17,29 @@
+ let firstResult = null;
+ let lastResult = null;
+ 
++// Ventz Changes BEGIN: live status line ("N results" / "No results"), created here so
++// the theme's search.html template needs no overlay.
++let statusLine = null;
++const ensureStatusLine = () => {
++    if (statusLine || !searchBox) {
++        return;
++    }
++    statusLine = document.createElement('div');
++    statusLine.id = 'searchStatus';
++    statusLine.className = 'search-status';
++    statusLine.setAttribute('role', 'status');
++    statusLine.setAttribute('aria-live', 'polite');
++    resList.before(statusLine);
++};
++
++const setStatus = (text) => {
++    ensureStatusLine();
++    if (statusLine) {
++        statusLine.textContent = text;
++    }
++};
++// Ventz Changes END
++
+ const defaultFuseOptions = {
+     distance: 100,
+     threshold: 0.4,
+@@ -49,6 +80,7 @@
+     firstResult = null;
+     lastResult = null;
+     resList.innerHTML = '';
++    setStatus(''); // Ventz Changes: clear the status line along with the results
+     sInput.value = '';
+     sInput.focus();
+ };
+@@ -63,7 +95,89 @@
+     element.focus();
+     element.parentElement?.classList.add('focus');
+     currentElement = element;
++};
++
++// Ventz Changes BEGIN: highlight helpers. Fuse match indices are inclusive [from, to]
++// pairs into the ORIGINAL string; window [start, end) clips them for snippets.
++// DOM is built from text nodes + <mark> elements — post content never touches innerHTML.
++const highlightedFragment = (text, indices, start, end) => {
++    const fragment = document.createDocumentFragment();
++    let cursor = start;
++
++    for (const [from, to] of indices) {
++        const markFrom = Math.max(from, start);
++        const markTo = Math.min(to + 1, end);
++        if (markTo <= cursor || markFrom >= end) {
++            continue;
++        }
++        if (markFrom > cursor) {
++            fragment.appendChild(document.createTextNode(text.slice(cursor, markFrom)));
++        }
++        const mark = document.createElement('mark');
++        mark.textContent = text.slice(Math.max(markFrom, cursor), markTo);
++        fragment.appendChild(mark);
++        cursor = markTo;
++    }
++
++    if (cursor < end) {
++        fragment.appendChild(document.createTextNode(text.slice(cursor, end)));
++    }
++
++    return fragment;
++};
++
++const longestIndexPair = (indices) =>
++    indices.reduce((best, pair) => (pair[1] - pair[0] > best[1] - best[0] ? pair : best));
++
++// Ventz Changes (cont.): build the context snippet for one result — prefers a body/summary
++// match; falls back to a matched tag so tag-only hits still explain themselves.
++const SNIPPET_BEFORE = 50;
++const SNIPPET_LENGTH = 160;
++
++const buildSnippet = (result) => {
++    const matches = result.matches ?? [];
++    const textMatch =
++        matches.find((m) => m.key === 'content') ?? matches.find((m) => m.key === 'summary');
++
++    if (textMatch) {
++        const text = textMatch.value ?? '';
++        const [primaryStart] = longestIndexPair(textMatch.indices);
++        let start = Math.max(0, primaryStart - SNIPPET_BEFORE);
++        // snap forward to a word boundary so snippets don't open mid-word
++        if (start > 0) {
++            const nextSpace = text.indexOf(' ', start);
++            if (nextSpace !== -1 && nextSpace < primaryStart) {
++                start = nextSpace + 1;
++            }
++        }
++        const end = Math.min(text.length, start + SNIPPET_LENGTH);
++
++        const snippet = document.createElement('p');
++        snippet.className = 'search-snippet';
++        if (start > 0) {
++            snippet.appendChild(document.createTextNode('…'));
++        }
++        snippet.appendChild(highlightedFragment(text, textMatch.indices, start, end));
++        if (end < text.length) {
++            snippet.appendChild(document.createTextNode('…'));
++        }
++        return snippet;
++    }
++
++    const tagMatch = matches.find((m) => m.key === 'tags');
++    if (tagMatch) {
++        const snippet = document.createElement('p');
++        snippet.className = 'search-snippet';
++        snippet.appendChild(document.createTextNode('Tagged: '));
++        snippet.appendChild(
++            highlightedFragment(tagMatch.value ?? '', tagMatch.indices, 0, (tagMatch.value ?? '').length)
++        );
++        return snippet;
++    }
++
++    return null;
+ };
++// Ventz Changes END
+ 
+ const renderResults = (results) => {
+     if (!Array.isArray(results) || results.length === 0) {
+@@ -76,7 +190,20 @@
+ 
+     for (const result of results) {
+         const li = document.createElement('li');
+-        const titleText = document.createTextNode(result.item.title);
++
++        // Ventz Changes BEGIN: title is a span (was a bare text node) so title matches highlight
++        const title = document.createElement('span');
++        title.className = 'search-title';
++        const titleMatch = (result.matches ?? []).find((m) => m.key === 'title');
++        if (titleMatch) {
++            title.appendChild(
++                highlightedFragment(result.item.title, titleMatch.indices, 0, result.item.title.length)
++            );
++        } else {
++            title.textContent = result.item.title;
++        }
++        // Ventz Changes END
++
+         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+         svg.setAttribute('width', '24');
+         svg.setAttribute('height', '24');
+@@ -95,8 +222,14 @@
+         link.href = result.item.permalink;
+         link.setAttribute('aria-label', result.item.title);
+ 
+-        li.appendChild(titleText);
++        li.appendChild(title);
+         li.appendChild(svg);
++        // Ventz Changes BEGIN: context snippet with highlighted match
++        const snippet = buildSnippet(result);
++        if (snippet) {
++            li.appendChild(snippet);
++        }
++        // Ventz Changes END
+         li.appendChild(link);
+         fragment.appendChild(li);
+     }
+@@ -115,12 +248,21 @@
+     const query = sInput.value.trim();
+     if (!query) {
+         renderResults([]);
++        setStatus(''); // Ventz Changes: empty query clears the status line too
+         return;
+     }
+ 
+     const searchOptions = params.fuseOpts?.limit ? { limit: params.fuseOpts.limit } : undefined;
+     const results = searchOptions ? fuse.search(query, searchOptions) : fuse.search(query);
+     renderResults(results);
++
++    // Ventz Changes BEGIN: result count / no-results feedback
++    if (results.length === 0) {
++        setStatus(`No results for “${query}”`);
++    } else {
++        setStatus(`${results.length} result${results.length === 1 ? '' : 's'}`);
++    }
++    // Ventz Changes END
+ };
+ 
+ const initSearch = async () => {

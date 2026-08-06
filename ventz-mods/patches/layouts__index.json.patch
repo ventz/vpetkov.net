@@ -1,0 +1,14 @@
+--- a/layouts/index.json
++++ b/layouts/index.json
+@@ -1,7 +1,10 @@
++{{- /* Ventz Changes: overlay of themes/PaperMod/layouts/index.json —
++       adds "tags" to each index entry so fuseOpts can match on taxonomy
++       (e.g. searching "vpn" surfaces everything tagged vpn). */ -}}
+ {{- $.Scratch.Add "index" slice -}}
+ {{- range site.RegularPages -}}
+     {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
+-    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
++    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary "tags" (.Params.tags | default slice)) -}}
+     {{- end }}
+ {{- end -}}
+ {{- $.Scratch.Get "index" | jsonify -}}

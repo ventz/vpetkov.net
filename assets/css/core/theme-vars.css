@@ -42,11 +42,12 @@
     color-scheme: dark;
 }
 
-/* Ventz Changes: keep the lighter "Dark Visible in list mode" background for previews
+/* Ventz Changes BEGIN: keep the lighter "Dark Visible in list mode" background for previews
    (a11y: --code-bg instead of --tertiary so Chroma tokens stay >= 4.5:1) */
 [data-theme="dark"] .entry-content .highlight {
     background: var(--code-bg) !important;
 }
+/* Ventz Changes END */
 
 .list {
     background: var(--code-bg);

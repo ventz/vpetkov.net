@@ -1,0 +1,25 @@
+--- a/layouts/_markup/render-image.html
++++ b/layouts/_markup/render-image.html
+@@ -1,3 +1,7 @@
++{{- /* Ventz Changes: theme copy + explicit width/height for media.vpetkov.net
++       images (Lighthouse CLS: "Image elements do not have explicit width and
++       height"). Remote dimensions are probed once at build via resources.GetRemote
++       (cached in resources/); on fetch failure the img renders as before. */}}
+ {{- $u := urls.Parse .Destination -}}
+ {{- $src := $u.String -}}
+ {{- if not $u.IsAbs -}}
+@@ -13,6 +17,14 @@
+   {{- end -}}
+ {{- end -}}
+ {{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
++{{- /* Ventz Changes: probe dimensions for our R2-hosted media */ -}}
++{{- if eq $u.Host "media.vpetkov.net" -}}
++  {{- with try (resources.GetRemote $src) -}}
++    {{- with .Value -}}
++      {{- $attributes = merge $attributes (dict "width" (string .Width) "height" (string .Height)) -}}
++    {{- end -}}
++  {{- end -}}
++{{- end -}}
+ <img
+   {{- range $k, $v := $attributes -}}
+     {{- if $v -}}

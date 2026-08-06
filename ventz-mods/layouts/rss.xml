@@ -46,6 +46,7 @@
     </image>
     {{- end }}
     <generator>Hugo</generator>
+    {{- /* Ventz Changes: site.Language.Locale replaces .LanguageCode (deprecated in Hugo 0.158) */}}
     <language>{{ site.Language.Locale }}</language>{{ with $authorEmail }}
     <managingEditor>{{.}}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
     <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with site.Copyright }}

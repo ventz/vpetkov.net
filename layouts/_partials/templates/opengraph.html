@@ -13,6 +13,7 @@
   <meta property="og:description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
 
+{{- /* Ventz Changes: site.Language.Locale replaces .LanguageCode (deprecated in Hugo 0.158) */}}
 {{- with or .Params.locale site.Language.Locale }}
   <meta property="og:locale" content="{{ replace . `-` `_` }}">
 {{- end }}

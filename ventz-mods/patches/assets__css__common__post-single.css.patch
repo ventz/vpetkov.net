@@ -1,0 +1,77 @@
+--- a/assets/css/common/post-single.css
++++ b/assets/css/common/post-single.css
+@@ -1,10 +1,28 @@
+ .page-header,
+ .post-header {
+     margin: 24px auto var(--content-gap) auto;
++    /* Ventz Changes: ADDED HR Border under header */
++    border-bottom: 1px solid var(--tertiary);
+ }
+ 
++/* Ventz Changes BEGIN: added section — RED accent for header links */
++.post-header a {
++    /*color: rgb(210, 53, 62);*/
++    color: var(--accent-link);
++}
++/* Ventz Changes END */
++
++/* Ventz Changes BEGIN: added section — heavier weight for the post date */
++.post-header span {
++    font-weight: bold;
++}
++/* Ventz Changes END */
++
+ .post-title {
+-    font-size: 40px;
++    /* Ventz Changes: ADDED margin-bottom to tighten title/date spacing */
++    margin-bottom: 2px;
++    /* Ventz Changes: Made Post Title Smaller: 40px; */
++    font-size: 32px;
+ }
+ 
+ .post-description {
+@@ -61,8 +79,30 @@
+     background: var(--code-bg);
+     border-radius: var(--radius);
+     border: 1px solid var(--border);
++    /* Ventz Changes: ADDED padding so the TOC text isn't flush to its border */
++    padding: 0.4em;
+ }
+ 
++/* Ventz Changes BEGIN: Floating TOC sidebar to the right of the post.
++   (a11y) Only where it fully fits — below 1360px it caused horizontal page
++   scrolling (WCAG 1.4.10); narrower viewports fall back to the in-flow TOC.
++   Sticky (not absolute) so it follows the reader down the post; floated out
++   of the flow so it doesn't push content; auto-opened by extend_footer.html. */
++@media screen and (min-width: 1360px) {
++    details.toc {
++        position: sticky;
++        float: right;
++        top: 24px;
++        width: 240px;
++        margin: 0 -270px 0 0;
++        font-size: 14px;
++        max-height: calc(100vh - 48px);
++        overflow-y: auto;
++        z-index: 1000;
++    }
++}
++/* Ventz Changes END */
++
+ [data-theme="dark"] details.toc {
+     background: var(--entry);
+ }
+@@ -109,6 +149,13 @@
+     padding-bottom: 0.6rem;
+ }
+ 
++/* Ventz Changes BEGIN: tighter TOC inner spacing */
++details.toc .inner {
++    margin: 0 20px;
++    padding: 10px 20px;
++}
++/* Ventz Changes END */
++
+ details li ul {
+     margin-inline-start: var(--gap);
+ }

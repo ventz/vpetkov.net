@@ -1,0 +1,77 @@
+--- a/layouts/_partials/comments.html
++++ b/layouts/_partials/comments.html
+@@ -1,3 +1,74 @@
+ {{- /* Comments area start */ -}}
+ {{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
++{{- /* Ventz Changes (a11y): named landmark + heading so comments are navigable */}}
++<section class="comments" aria-labelledby="comments-heading">
++<h2 id="comments-heading" class="sr-only">Comments</h2>
++<script>
++    /* Ventz Changes (a11y): match the theme's auto mode — fall back to OS preference
++       when the toggle was never used, instead of defaulting to light */
++    const getStoredTheme = () => {
++        const p = localStorage.getItem("pref-theme");
++        if (p) return p === "dark" ? "dark" : "light";
++        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
++    };
++
++    const setGiscusTheme = () => {
++        const sendMessage = (message) => {
++            const iframe = document.querySelector('iframe.giscus-frame');
++            if (iframe) {
++                iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
++            }
++        }
++        sendMessage({ setConfig: { theme: getStoredTheme() } })
++    }
++
++    document.addEventListener("DOMContentLoaded", () => {
++        const giscusAttributes = {
++            "src": "https://giscus.app/client.js",
++            "data-repo": "{{ .Site.Params.giscus.repo }}",
++            "data-repo-id": "{{ .Site.Params.giscus.repoID }}",
++            "data-category": "{{ .Site.Params.giscus.category }}",
++            "data-category-id": "{{ .Site.Params.giscus.categoryID }}",
++            "data-mapping": "{{ .Site.Params.giscus.mapping | default "pathname" }}",
++            "data-strict": "{{ .Site.Params.giscus.strict | default "0" }}",
++            "data-reactions-enabled": "{{ .Site.Params.giscus.reactionsEnabled | default "1" }}",
++            "data-emit-metadata": "{{ .Site.Params.giscus.emitMetadata | default "0" }}",
++            "data-input-position": "{{ .Site.Params.giscus.inputPosition | default "bottom" }}",
++            "data-theme": getStoredTheme(),
++            "data-lang": "{{ .Site.Params.giscus.lang | default "en" }}",
++            "data-loading": "{{ .Site.Params.giscus.loading | default "lazy" }}",
++            "crossorigin": "anonymous",
++            "async": "",
++        };
++
++        // Dynamically create script tag.
++        const giscusScript = document.createElement("script");
++        Object.entries(giscusAttributes).forEach(
++            ([key, value]) => giscusScript.setAttribute(key, value));
++        console.log(giscusScript)
++        document.querySelector(".comments").appendChild(giscusScript);
++
++        // Update giscus theme when the theme switcher is clicked.
++        const themeSwitcher = document.querySelector("#theme-toggle");
++        if (themeSwitcher) {
++            themeSwitcher.addEventListener("click", setGiscusTheme);
++        }
++    });
++</script>
++</section>
++<!--<script src="https://giscus.app/client.js"
++        data-repo="ventz/dev.vpetkov.net-comments"
++        data-repo-id="R_kgDOLOT0og"
++        data-category="General"
++        data-category-id="DIC_kwDOLOT0os4Cc9yl"
++        data-mapping="url"
++        data-strict="0"
++        data-reactions-enabled="1"
++        data-emit-metadata="0"
++        data-input-position="top"
++        data-theme="preferred_color_scheme"
++        data-lang="en"
++        crossorigin="anonymous"
++        async>
++</script>-->
+ {{- /* Comments area end */ -}}
