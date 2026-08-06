@@ -1,6 +1,7 @@
 # vpetkov.net
 
 Hugo site for [vpetkov.net](https://vpetkov.net/), themed with a personal fork of PaperMod.
+Live since 2026-08-06 on Cloudflare Pages, replacing 15+ years of WordPress at blog.vpetkov.net.
 
 ## The scripts — day-to-day driving
 
