@@ -47,5 +47,5 @@ Here is the download:
 Note: I updated the zip archive on 1-09-2012. If you downloaded before then, please re-download. What I changed is the Vibrate sound-profile task. It turns out that in ICS, if you set everything to Vibrate, but then set the volume/notification sound to something else, it overrides the "Vibrate" setting. While this seems logical, this was not the case in pre-ICS. It is now fixed.
 
  [1]: http://blog.vpetkov.net/2011/05/10/my-tasker-program-blackberry-sound-profiles-for-android "http://blog.vpetkov.net/2011/05/10/my-tasker-program-blackberry-sound-profiles-for-android"
- [2]: /wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip
- [3]: /wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip "/wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip"
+ [2]: https://media.vpetkov.net/wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip
+ [3]: https://media.vpetkov.net/wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip "/wp-content/uploads/2012/01/Blackberry_Sound_Profiles_for_Android.zip"

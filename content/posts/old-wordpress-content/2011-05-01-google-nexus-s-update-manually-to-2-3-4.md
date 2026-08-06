@@ -35,6 +35,6 @@ Please just grab the FULL 2.3.3 ([f182cf141e6a.signed-soju-ota-102588.f182cf14.z
 
 IF YOU JUST WANT THE RADIO UPDATE:
 
-> [XXKD1-GRJ22-radio-nexuss-unsigned.zip](/wp-content/uploads/2011/05/XXKD1-GRJ22-radio-nexuss-unsigned.zip) (md5: 57659f04148ebfa849ef523544f2a3dd)
+> [XXKD1-GRJ22-radio-nexuss-unsigned.zip](https://media.vpetkov.net/wp-content/uploads/2011/05/XXKD1-GRJ22-radio-nexuss-unsigned.zip) (md5: 57659f04148ebfa849ef523544f2a3dd)
 
 Note: I personally couldn't update just the radio update from 2.3.3 (with GRI40) - kept getting the status 7 signature verification, so I used the 2.3.4 update to get the radio patches. I've seen people who have been able to apply the radio update to 2.3.3 without any problems.

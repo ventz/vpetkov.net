@@ -52,4 +52,4 @@ Now unzip it and follow the same steps from the original post - grab the "Timed.
 
 Good luck, and as always, feel free to ask questions. I'll try my best to help out.
 
- [1]: /wp-content/uploads/2012/02/Timed1.zip "Timed.zip"
+ [1]: https://media.vpetkov.net/wp-content/uploads/2012/02/Timed1.zip "Timed.zip"

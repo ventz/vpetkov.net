@@ -5,3 +5,6 @@ resources/
 
 # Claude Code local project context
 CLAUDE.md
+
+# Cloudflare credentials (canonical copy: <redacted>)
+.env
