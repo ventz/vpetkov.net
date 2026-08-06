@@ -1,0 +1,15 @@
+/* Ventz Changes (a11y): Chroma's Catppuccin comment/doc-string color #6e738d fails
+   contrast on every code background (3.6:1 on the light-mode block). #9aa1bc measures
+   6.6:1 / 5.8:1 / 4.6:1 on rgb(28,29,33) / rgb(38,39,44) / rgb(55,56,62). Same hue,
+   still clearly "dimmer than code". Loaded from extended/ so it wins over chroma-styles. */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf,
+.chroma .sd,
+.chroma .sh {
+    color: #9aa1bc;
+}

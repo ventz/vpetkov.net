@@ -21,9 +21,16 @@ cp -Rf "$src_layouts" "$dest"
 echo ""
 
 src_assets="assets"
-# Get the list of differing files between the site assets and the theme's
+# Get the list of differing files between the site assets and the theme's,
+# plus files that only exist site-side (e.g. assets/css/extended/*)
 # NOTE: full path for diff is needed in case we are overriding it in zsh (ex: adding color, which shifts the columns from 3->4)
-files=$(/usr/bin/diff -rq "$src_assets" "$theme/$src_assets" 2>/dev/null | awk '/^Files /{print $2}')
+files=$(/usr/bin/diff -rq "$src_assets" "$theme/$src_assets" 2>/dev/null | awk -v src="$src_assets" '
+    /^Files /{print $2}
+    /^Only in /{ dir=$3; sub(/:$/,"",dir); if (index(dir, src)==1) print dir "/" $4 }')
+# "Only in" entries can be whole directories (diff -q does not list their contents)
+files=$(for f in $files; do
+    if [ -d "$f" ]; then find "$f" -type f; elif [ -f "$f" ]; then echo "$f"; fi
+done)
 
 echo "> Copying all changed $src_assets"
 echo ""

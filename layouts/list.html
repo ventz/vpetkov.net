@@ -71,10 +71,12 @@
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
   <header class="entry-header">
-    {{- /* Ventz Changes (a11y): single <time> announced as one date; visual split hidden from AT */}}
-    <time class="date-container" datetime="{{ .Date.Format "2006-01-02" }}" aria-label="{{ .Date.Format "January 2, 2006" }}">
+    {{- /* Ventz Changes (a11y): single <time> announced as one date; visual split hidden
+         from AT. sr-only text instead of aria-label (prohibited on <time>) */}}
+    <time class="date-container" datetime="{{ .Date.Format "2006-01-02" }}">
         <span class="day" aria-hidden="true">{{ .Date.Format "2" }}</span>
         <span class="month-year" aria-hidden="true">{{ .Date.Format "Jan" }} {{ .Date.Format "2006" }}</span>
+        <span class="sr-only">{{ .Date.Format "January 2, 2006" }}</span>
     </time>
     <h2 class="entry-hint-parent">
       {{- /* Ventz Changes (a11y): real link on the title instead of an empty overlay anchor */}}
