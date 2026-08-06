@@ -7,9 +7,16 @@ pagination:
 theme: PaperMod
 
 enableRobotsTXT: true
+enableEmoji: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+
+# Summaries (card previews) — first N words unless a <!--more--> marker is set
+summaryLength: 100
+
+# RSS: cap the feed; full post content in items (was rssFullContent on the old site)
+rssLimit: 20
 
 # Analytics: none injected by Hugo/PaperMod. Using Cloudflare Web Analytics instead,
 # enabled in the Cloudflare Pages dashboard (auto-injected beacon; no cookies, no config here).
@@ -26,6 +33,10 @@ permalinks:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  # Explicit: homepage + home RSS list only blog posts (never legacy/documentation).
+  # Without this Hugo guesses "the largest section", which could silently flip.
+  mainSections: [posts]
+  ShowFullTextinRSS: true
   title: VPetkov.net
   description: "My Life at 2am"
   footer:
