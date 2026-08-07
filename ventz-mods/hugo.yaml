@@ -107,7 +107,12 @@ params:
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
-    threshold: 0.3
+    # Near-exact matching (user decision): the query must appear verbatim OR within
+    # 1-2 typos ("Twiter"/"dockr" still find Twitter/Docker). ignoreLocation = match
+    # anywhere in the field. Empirically chosen: 0.15 misses one-typo queries,
+    # 0.25 adds nothing, old 0.3-without-ignoreLocation caused scattered-fragment noise.
+    threshold: 0.2
+    ignoreLocation: true
     minMatchCharLength: 2
     limit: 25
     includeMatches: true # overlay fastsearch.js renders highlighted snippets from these

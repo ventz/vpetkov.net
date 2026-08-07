@@ -130,15 +130,20 @@ const longestIndexPair = (indices) =>
     indices.reduce((best, pair) => (pair[1] - pair[0] > best[1] - best[0] ? pair : best));
 
 // Ventz Changes (cont.): Fuse's fuzzy matcher reports EVERY matched character run,
-// including 2-3 letter fragments scattered through unrelated words ("er", "ri", "te"
-// while searching "twitter"). Only highlight runs at least ~80% as long as the longest
-// query word (min 3 chars); if none qualify, fall back to the single longest run.
+// including short fragments scattered through unrelated words ("er", "ri", "te" —
+// or "rrier"/"etter" as the longest run — while searching "twitter"). Predictable
+// rule instead: only highlight runs whose text literally contains a query word
+// (case-insensitive). Fuzzy-only results stay in the list, just unhighlighted.
 let currentQuery = '';
-const significantIndices = (indices) => {
-    const longestWord = Math.max(...currentQuery.split(/\s+/).map((w) => w.length), 0);
-    const minLen = Math.max(3, Math.ceil(longestWord * 0.8));
-    const strong = indices.filter(([from, to]) => to - from + 1 >= minLen);
-    return strong.length ? strong : [longestIndexPair(indices)];
+const significantIndices = (indices, text) => {
+    const words = currentQuery.toLowerCase().split(/\s+/).filter((w) => w.length >= 3);
+    if (!words.length) {
+        return indices;
+    }
+    return indices.filter(([from, to]) => {
+        const run = text.slice(from, to + 1).toLowerCase();
+        return words.some((w) => run.includes(w));
+    });
 };
 
 // Ventz Changes (cont.): build the context snippet for one result — prefers a body/summary
@@ -153,8 +158,9 @@ const buildSnippet = (result) => {
 
     if (textMatch) {
         const text = textMatch.value ?? '';
-        const indices = significantIndices(textMatch.indices);
-        const [primaryStart] = longestIndexPair(indices);
+        const indices = significantIndices(textMatch.indices, text);
+        // window centers on a real occurrence when one exists, else the best fuzzy region
+        const [primaryStart] = longestIndexPair(indices.length ? indices : textMatch.indices);
         let start = Math.max(0, primaryStart - SNIPPET_BEFORE);
         // snap forward to a word boundary so snippets don't open mid-word
         if (start > 0) {
@@ -183,7 +189,7 @@ const buildSnippet = (result) => {
         snippet.className = 'search-snippet';
         snippet.appendChild(document.createTextNode('Tagged: '));
         snippet.appendChild(
-            highlightedFragment(tagMatch.value ?? '', significantIndices(tagMatch.indices), 0, (tagMatch.value ?? '').length)
+            highlightedFragment(tagMatch.value ?? '', significantIndices(tagMatch.indices, tagMatch.value ?? ''), 0, (tagMatch.value ?? '').length)
         );
         return snippet;
     }
@@ -210,7 +216,7 @@ const renderResults = (results) => {
         const titleMatch = (result.matches ?? []).find((m) => m.key === 'title');
         if (titleMatch) {
             title.appendChild(
-                highlightedFragment(result.item.title, significantIndices(titleMatch.indices), 0, result.item.title.length)
+                highlightedFragment(result.item.title, significantIndices(titleMatch.indices, result.item.title), 0, result.item.title.length)
             );
         } else {
             title.textContent = result.item.title;
