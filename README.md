@@ -170,6 +170,35 @@ Setup decisions and gotchas (2026-08-06):
   account-derived hash, so leaving it on both duplicates the content on an
   unbranded URL and leaks an account identifier.
 
+## Analytics — no tracking, ever
+
+**Decision: zero client-side analytics.** No Google Analytics, no Cloudflare Web
+Analytics beacon, no cookies, no fingerprinting. Page-hit data comes exclusively
+from Cloudflare's edge request logs — the modern equivalent of reading Apache
+access logs. Visitors' browsers are never involved.
+
+```sh
+./analytics.sh          # last 24h: top pages, status codes
+./analytics.sh 7        # last 7 days
+```
+
+**Retention & the archiver.** Cloudflare keeps per-path data for only 8 days
+(free plan; daily site-wide totals last ~a year). A Worker preserves history:
+
+- **`vpetkov-analytics-archiver`** (Cloudflare Worker, cron `10 3 * * *` UTC)
+  queries the GraphQL API for the previous day's per-path hits and writes
+  `daily/YYYY-MM-DD.json` (~2KB) to the **private** R2 bucket `vpetkov-analytics`.
+- Self-healing: every run backfills any missing day still inside the 8-day window,
+  so a failed run never loses data.
+- The Worker's API token is scoped to `Zone → Analytics → Read` ONLY — even fully
+  leaked it can do nothing but read hit counts.
+- Manual trigger: `GET` the worker's workers.dev URL with
+  `Authorization: Bearer <that token>`; unauthorized requests are rejected.
+- Worker source: `workers/analytics-archiver.js` (deployed via API; no secrets in code — token/zone arrive as Worker bindings).
+
+Search on the site is also privacy-clean: client-side Fuse.js over a static
+`index.json` — queries never leave the browser.
+
 ## Deploy — Cloudflare Pages
 
 - Build command: `hugo --gc --minify`
