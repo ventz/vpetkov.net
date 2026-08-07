@@ -35,7 +35,7 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `assets/css/common/post-single.css` — +44/-1
 - `assets/css/core/reset.css` — +22/-1
 - `assets/css/core/theme-vars.css` — +21/-4
-- `assets/js/fastsearch.js` — +128/-2
+- `assets/js/fastsearch.js` — +141/-2
 
 ## Site-only files (18) — no theme counterpart
 

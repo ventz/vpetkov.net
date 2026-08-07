@@ -129,6 +129,18 @@ const highlightedFragment = (text, indices, start, end) => {
 const longestIndexPair = (indices) =>
     indices.reduce((best, pair) => (pair[1] - pair[0] > best[1] - best[0] ? pair : best));
 
+// Ventz Changes (cont.): Fuse's fuzzy matcher reports EVERY matched character run,
+// including 2-3 letter fragments scattered through unrelated words ("er", "ri", "te"
+// while searching "twitter"). Only highlight runs at least ~80% as long as the longest
+// query word (min 3 chars); if none qualify, fall back to the single longest run.
+let currentQuery = '';
+const significantIndices = (indices) => {
+    const longestWord = Math.max(...currentQuery.split(/\s+/).map((w) => w.length), 0);
+    const minLen = Math.max(3, Math.ceil(longestWord * 0.8));
+    const strong = indices.filter(([from, to]) => to - from + 1 >= minLen);
+    return strong.length ? strong : [longestIndexPair(indices)];
+};
+
 // Ventz Changes (cont.): build the context snippet for one result — prefers a body/summary
 // match; falls back to a matched tag so tag-only hits still explain themselves.
 const SNIPPET_BEFORE = 50;
@@ -141,7 +153,8 @@ const buildSnippet = (result) => {
 
     if (textMatch) {
         const text = textMatch.value ?? '';
-        const [primaryStart] = longestIndexPair(textMatch.indices);
+        const indices = significantIndices(textMatch.indices);
+        const [primaryStart] = longestIndexPair(indices);
         let start = Math.max(0, primaryStart - SNIPPET_BEFORE);
         // snap forward to a word boundary so snippets don't open mid-word
         if (start > 0) {
@@ -157,7 +170,7 @@ const buildSnippet = (result) => {
         if (start > 0) {
             snippet.appendChild(document.createTextNode('…'));
         }
-        snippet.appendChild(highlightedFragment(text, textMatch.indices, start, end));
+        snippet.appendChild(highlightedFragment(text, indices, start, end));
         if (end < text.length) {
             snippet.appendChild(document.createTextNode('…'));
         }
@@ -170,7 +183,7 @@ const buildSnippet = (result) => {
         snippet.className = 'search-snippet';
         snippet.appendChild(document.createTextNode('Tagged: '));
         snippet.appendChild(
-            highlightedFragment(tagMatch.value ?? '', tagMatch.indices, 0, (tagMatch.value ?? '').length)
+            highlightedFragment(tagMatch.value ?? '', significantIndices(tagMatch.indices), 0, (tagMatch.value ?? '').length)
         );
         return snippet;
     }
@@ -197,7 +210,7 @@ const renderResults = (results) => {
         const titleMatch = (result.matches ?? []).find((m) => m.key === 'title');
         if (titleMatch) {
             title.appendChild(
-                highlightedFragment(result.item.title, titleMatch.indices, 0, result.item.title.length)
+                highlightedFragment(result.item.title, significantIndices(titleMatch.indices), 0, result.item.title.length)
             );
         } else {
             title.textContent = result.item.title;
@@ -246,6 +259,7 @@ const performSearch = () => {
     }
 
     const query = sInput.value.trim();
+    currentQuery = query; // Ventz Changes: highlight filter needs the live query
     if (!query) {
         renderResults([]);
         setStatus(''); // Ventz Changes: empty query clears the status line too
