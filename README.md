@@ -12,6 +12,7 @@ Live since 2026-08-06 on Cloudflare Pages, replacing 15+ years of WordPress at b
 | `./r2-upload.sh file.png` | Upload media to R2, prints the `https://media.vpetkov.net/...` URL + markdown |
 | `./update-papermod.sh` | Pull upstream PaperMod into the fork, re-apply the overlay, refresh the snapshot |
 | `./generate-ventz-mods.sh` | Re-snapshot the customization overlay into `ventz-mods/` (run after overlay edits) |
+| `./analytics.sh [days]` | Page-hit stats from Cloudflare's edge (Apache-logs style; zero client-side tracking) |
 
 Publishing = set `draft: false` → commit → push (Cloudflare Pages builds and deploys).
 Details for each area are in the sections below.
