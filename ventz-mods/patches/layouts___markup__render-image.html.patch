@@ -8,16 +8,35 @@
  {{- $u := urls.Parse .Destination -}}
  {{- $src := $u.String -}}
  {{- if not $u.IsAbs -}}
-@@ -13,6 +17,14 @@
+@@ -12,7 +16,32 @@
+     {{- end -}}
    {{- end -}}
  {{- end -}}
- {{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
+-{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
++{{- /* Ventz Changes: the FIRST image on a page is the usual LCP element, so it must
++       not be lazy-loaded (lazy defers its discovery and pushes LCP out). Give it
++       eager + fetchpriority=high; everything below the fold stays lazy. .Ordinal is
++       0-based per page. decoding=async keeps decode off the main thread either way. */}}
++{{- $loading := cond (eq .Ordinal 0) "eager" "lazy" -}}
++{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" $loading "decoding" "async") -}}
++{{- if eq .Ordinal 0 -}}
++  {{- $attributes = merge $attributes (dict "fetchpriority" "high") -}}
++{{- end -}}
 +{{- /* Ventz Changes: probe dimensions for our R2-hosted media */ -}}
 +{{- if eq $u.Host "media.vpetkov.net" -}}
++  {{- $probed := false -}}
 +  {{- with try (resources.GetRemote $src) -}}
 +    {{- with .Value -}}
 +      {{- $attributes = merge $attributes (dict "width" (string .Width) "height" (string .Height)) -}}
++      {{- $probed = true -}}
 +    {{- end -}}
++  {{- end -}}
++  {{- /* Ventz Changes: a failed probe silently drops width/height, i.e. silently
++         drops the CLS protection this hook exists for. Warn loudly instead of
++         degrading in silence (a 404 here usually means the object is missing or
++         the edge is holding a stale negative cache entry for the key). */}}
++  {{- if not $probed -}}
++    {{- warnf "render-image: could not probe %s (no width/height emitted; CLS risk) on %s" $src .Page.RelPermalink -}}
 +  {{- end -}}
 +{{- end -}}
  <img

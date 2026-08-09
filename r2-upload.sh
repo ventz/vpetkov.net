@@ -52,7 +52,11 @@ for f in "$@"; do
     url="$PUBLIC_HOST/$key"
 
     if [ "$force" -ne 1 ]; then
-        code=$(curl -s -o /dev/null -w '%{http_code}' -I "$url")
+        # Probe the R2 API, NOT the public URL: a HEAD on $url for a key that does
+        # not exist yet makes Cloudflare cache that 404 at the edge, so the object
+        # we upload one second later keeps 404ing until the negative TTL expires.
+        code=$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -I "$API/$ekey")
         if [ "$code" = "200" ]; then
             echo "EXISTS (use -f to overwrite): $url" >&2
             continue

@@ -1,6 +1,6 @@
 # MANIFEST — ventz-mods snapshot
 
-**Generated:** 2026-08-06 by `generate-ventz-mods.sh` (do not edit by hand)
+**Generated:** 2026-08-09 by `generate-ventz-mods.sh` (do not edit by hand)
 
 ## Base this overlay was built against
 
@@ -18,7 +18,7 @@ them after an upstream merge with `./ventz-mods/reapply.sh` (see README).
 
 These conflict with upstream changes. Each has a patch in `patches/`.
 
-- `layouts/_markup/render-image.html` — +12/-0
+- `layouts/_markup/render-image.html` — +30/-1
 - `layouts/_partials/comments.html` — +67/-0
 - `layouts/_partials/extend_footer.html` — +13/-3
 - `layouts/_partials/footer.html` — +17/-2
