@@ -14,6 +14,7 @@ description: "After years of maintaining a complex WordPress stack, Linux server
 
 After years of maintaining a complex WordPress-based blog, Linux servers, and a Datacenter Colo, I decided it was time to simplify. This new site is built with Hugo and focuses on one thing: making it easy to write and share ideas instead of spending my limited free time maintaining infrastructure. At the same time, I think we're at another inflection point on the internet - one where AI is changing not only *how* we build software, but also what kinds of technical content are worth publishing.
 
+
 <!--more-->
 
 ## Why Start Over?
@@ -40,9 +41,9 @@ That's a lot of infrastructure for what is, at its core, a collection of Markdow
 
 Eventually I realized I was spending more time maintaining the blog than writing for it. That wasn't the trade-off I wanted anymore.
 
-## Rediscovering Simplicity
+## Rediscovering Simplicity (and Why Hugo)
 
-Over the last five to six years, I've grown to appreciate the elegance of static websites.
+Over the last several years, I've grown to appreciate the elegance of static websites.
 
 Write in Markdown. Commit to Git. Deploy automatically.
 
@@ -53,8 +54,6 @@ That, and I still wanted complete control over how the site was built, deployed,
 Modern static site generators offer incredible performance, security, scalability, and deployment flexibility - all with virtually no operational overhead. There's something satisfying about eliminating entire classes of problems simply by removing the technologies that create them. And perhaps most importantly, they eliminate an entire class of security concerns that come with running a dynamic web application.
 
 In reality, I wasn't looking for a full-featured publishing platform anymore. I just wanted a place to quickly share interesting projects, technical deep dives, automation ideas, and the occasional how-to - a step above a collection of GitHub Gists.
-
-## Why Hugo?
 
 When it came time to rebuild, I evaluated just about every major static site generator I could find, including Hugo, Jekyll, Gatsby, Eleventy, Hexo, Docusaurus, and MkDocs.
 
@@ -67,6 +66,12 @@ Each has its strengths, but Hugo checked all the boxes for me:
 - Easy deployment to virtually any hosting provider
 
 I'll save the details for another post, but Hugo felt like the right balance between power and simplicity.
+
+## What Happened to the Old Blog?
+
+I've archived my old site, but you can still browse all of the posts under the [Old WordPress Blog](/tags/old-wordpress-blog/) tag, including the last article published on March 30, 2020.
+
+There's still plenty of content there that's worth preserving, and it's also a fun snapshot of the technologies and approaches I was using over the years. Think of it as a small piece of personal - and internet - history.
 
 ## The Internet Changed (Again)
 
@@ -113,15 +118,44 @@ What still excites me are things that AI can't easily fully synthesize (yet):
 - Unexpected failures
 - Surprising discoveries
 - Connecting ideas across different technologies
-- The bigger picture
+- The bigger picture *(more on that below)*
 
 In other words, the kinds of things you only get by actually building something.
 
 Those are the stories I want to tell.
 
+## The Bigger Picture: From Tools to Problems
+
+There's a larger shift behind all of this, and it's worth naming directly.
+
+For most of my career, the tools *were* the fun part. Compiling a custom kernel,
+tuning a mail server, scripting my way around some limitation - the technical
+artifact was the goal, and the write-up was about how to build it. A lot of this
+blog's archive is exactly that, and I'm glad it exists.
+
+But when AI can produce working code, configurations, and glue scripts in
+minutes, the tools themselves stop being the interesting part. They become what
+compilers became decades ago: something you use, not something you write about.
+
+What hasn't become a commodity is everything *around* the code: picking the
+right problem in the first place, understanding a messy domain well enough to
+model it, knowing which constraints are real and which are assumptions, judging
+whether a solution actually works outside a demo, and stitching systems,
+data, and people together into something that survives contact with the real
+world. AI accelerates all of it - but it doesn't replace the judgment, and it
+doesn't do the choosing.
+
+So the goal here has shifted with it: less focus on the specific code and tools
+used, and more on solving complex, real-world problems - and writing about *that*.
+Which problem was worth solving, how it was framed, what the constraints were,
+what failed on the way, and what the solution looked like once it met reality.
+The languages, frameworks, and tools involved are increasingly an implementation
+detail - one that will probably be different (and better) six months from now
+anyway.
+
 ## Looking Ahead
 
-For the last five to six years, I've been working almost exclusively with Generative AI.
+For the last six years - since mid-2020, back when OpenAI released Ada and Babbage - I've been working almost exclusively with Generative AI.
 
 During that time I've built, evaluated, or advised on hundreds of projects, prototypes, and proof-of-concepts spanning a wide range of industries and use cases.
 
@@ -134,18 +168,6 @@ Almost all of them taught me something.
 I'm hoping this blog becomes a place where I can share some of those lessons - not just prompts or snippets of code, but the design decisions, trade-offs, failures, surprises, and patterns that only become obvious after you've built enough of these systems.
 
 I'll still write about cloud infrastructure, automation, programming, open source, homelabs, and whatever technical rabbit hole I happen to be exploring.
-
-The difference is that I probably won't spend three pages explaining how to configure a particular tool or reproduce every command I typed along the way. AI is remarkably good at filling in those details.
-
-Instead, I'd rather focus on *why* I chose a particular approach, what worked, what didn't, the trade-offs I discovered, and the lessons I learned while building it.
-
-Those are the parts that I still find interesting - and, hopefully, useful to others.
-
-## What Happened to the Old Blog?
-
-I've archived my old site, but you can still browse all of the posts under the [Old WordPress Blog](/tags/old-wordpress-blog/) tag, including the last article published on March 30, 2020.
-
-There's still plenty of content there that's worth preserving, and it's also a fun snapshot of the technologies and approaches I was using over the years. Think of it as a small piece of personal - and internet - history.
 
 ## One Final Irony
 
