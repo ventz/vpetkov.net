@@ -45,7 +45,7 @@
        {{- if .Draft }}
        <span class="entry-hint" title="Draft">
          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-@@ -79,17 +97,27 @@
+@@ -79,17 +97,33 @@
        {{- end }}
      </h2>
    </header>
@@ -69,6 +69,12 @@
 +           by assets/css/extended/ventz-entry-preview.css. A div wrapper because
 +           block children inside <p> break the parser. */}}
 +    {{- $preview := replaceRE `(?s)<h[1-6][^>]*>(.*?)</h[1-6]>` `<p><strong>$1</strong></p>` (string .Summary) }}
++    {{- /* Ventz Changes: anchors are stripped from the preview (text kept). A card is
++           ONE target — click anywhere, get the post. A live link inside the teaser is a
++           second destination hidden in a surface readers already treat as a single
++           button, and it silently exits the site from a summary. The real link is in
++           the post itself. */}}
++    {{- $preview = replaceRE `</?a\b[^>]*>` `` $preview }}
 +    {{- /* Ventz Changes: the bare "..." rendered as a stray orphan line under the
 +           preview and read as noise. A real "Read more" affordance instead; it is
 +           aria-hidden + untabbable because the title link above already goes to the

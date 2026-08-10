@@ -37,6 +37,12 @@
     margin: 10px 0;
 }
 
+/* Ventz Changes: anchors are stripped from previews (layouts/list.html), so a bare
+   URL survives as plain text — it must wrap instead of overflowing the card */
+.post-entry .entry-content {
+    overflow-wrap: anywhere;
+}
+
 /* Ventz Changes BEGIN: "Read more ->" affordance replacing the old orphan "..."
    (markup in layouts/list.html) */
 .post-entry .entry-content .entry-more {

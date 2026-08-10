@@ -26,12 +26,12 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
-- `layouts/list.html` — +35/-8
+- `layouts/list.html` — +41/-8
 - `layouts/rss.xml` — +3/-1
 - `layouts/taxonomy.html` — +85/-0
 - `assets/css/common/header.css` — +3/-0
 - `assets/css/common/md-content.css` — +24/-0
-- `assets/css/common/post-entry.css` — +196/-8
+- `assets/css/common/post-entry.css` — +202/-9
 - `assets/css/common/post-single.css` — +44/-1
 - `assets/css/core/reset.css` — +22/-1
 - `assets/css/core/theme-vars.css` — +21/-4

@@ -67,7 +67,11 @@
 .post-entry:hover,
 .post-entry:focus-within {
     transform: translateY(-2px);
-    border-color: var(--tertiary);
+    /* Ventz Changes: hover/focus keeps the 1px border and gains contrast instead of
+       width — --secondary rather than --tertiary. Nothing reflows, and it reads as
+       "more contrast" in BOTH themes (light: 214 -> 108 grey, i.e. darker; dark:
+       65 -> 166, i.e. lighter against the dark card). */
+    border-color: var(--secondary);
 }
 
 .tag-entry .entry-cover {
@@ -163,9 +167,10 @@
     z-index: 0;
 }
 
-/* Ventz Changes (a11y): only interactive descendants rise above the hit area — plain
-   summary text still falls through, so the whole card keeps navigating on click */
-.entry-content a,
+/* Ventz Changes (a11y): only code blocks rise above the hit area, so a long line can
+   still be scrolled/selected; everything else in the preview falls through and the
+   whole card navigates to the post. Summary anchors are stripped outright in
+   layouts/list.html — a card is one target, not a grab-bag of destinations. */
 .entry-content pre {
     position: relative;
     z-index: 1;
