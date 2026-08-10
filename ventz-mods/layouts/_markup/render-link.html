@@ -1,0 +1,13 @@
+{{- /* Ventz Changes: site-only link render hook (PaperMod ships none). Markdown
+       cannot express target/rel and goldmark unsafe HTML is deliberately off, so
+       external links get their new-tab behaviour here instead of inline HTML.
+       External == absolute URL whose host differs from the site's; internal and
+       relative links, anchors and mailto: are emitted unchanged.
+       rel="noopener noreferrer" is required with target=_blank (tabnabbing). */}}
+{{- $u := urls.Parse .Destination -}}
+{{- $external := and $u.IsAbs (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
+<a href="{{ .Destination | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- if $external }} target="_blank" rel="noopener noreferrer"{{ end -}}
+>{{ .Text | safeHTML }}</a>
+{{- /**/ -}}

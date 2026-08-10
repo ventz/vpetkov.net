@@ -1,0 +1,49 @@
+/* Ventz Changes: side-by-side figures for the {{< figure-row >}} shortcode.
+   Used for before/after or multi-screen screenshots that only make sense next to
+   each other. Stacks to a single column under 640px so tall phone screenshots stay
+   readable.
+
+   Captions line up across the row even when the images differ in aspect ratio:
+   the columns stretch to the tallest one and each figcaption is pushed to the
+   bottom with margin-top:auto. Equalising the IMAGE heights instead would mean
+   cropping or letterboxing screenshots, which is worse. */
+
+.post-content .figure-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, 24px);
+  align-items: stretch;
+  justify-content: center;
+  margin: var(--gap, 24px) 0;
+}
+
+.post-content .figure-row figure {
+  flex: 1 1 240px;
+  max-width: 320px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-content .figure-row figure figcaption {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* The width= attribute on each figure sets the standalone size; inside a row the
+   column governs instead, so let the image fill it. */
+.post-content .figure-row figure img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .post-content .figure-row {
+    display: block;
+  }
+
+  .post-content .figure-row figure {
+    max-width: 100%;
+    margin: 0 auto var(--gap, 24px);
+  }
+}

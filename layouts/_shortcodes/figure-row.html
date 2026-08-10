@@ -1,0 +1,7 @@
+{{- /* Ventz Changes: site-only shortcode (no theme counterpart). goldmark unsafe
+       HTML is deliberately off site-wide, so a post cannot lay two figures side
+       by side with inline markup. Wrap nested {{< figure >}} calls in this to get
+       a flex row that stacks back to one column on narrow screens. Styling lives
+       in assets/css/extended/ventz-figure-row.css. */}}
+<div class="figure-row">{{ .Inner }}</div>
+{{- /**/ -}}

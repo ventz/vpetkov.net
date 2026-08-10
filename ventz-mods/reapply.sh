@@ -31,10 +31,13 @@ copy_site_only() {   # $1 = site-relative path
 }
 
 echo '> Copying site-only files'
+copy_site_only layouts/_markup/render-link.html
+copy_site_only layouts/_shortcodes/figure-row.html
 copy_site_only layouts/about.html
 copy_site_only layouts/pages.html
 copy_site_only assets/css/extended/ventz-a11y.css
 copy_site_only assets/css/extended/ventz-entry-preview.css
+copy_site_only assets/css/extended/ventz-figure-row.css
 copy_site_only assets/css/extended/ventz-search.css
 copy_site_only static/_headers
 copy_site_only static/android-chrome-192x192.png
