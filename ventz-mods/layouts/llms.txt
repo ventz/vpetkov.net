@@ -1,0 +1,77 @@
+{{- /* BEGIN Ventz Changes: replace PaperMod's generic recursive printer with a
+     spec-shaped llms.txt (https://llmstxt.org/): H1, a `>` blockquote summary, a
+     short orientation paragraph, then H2-ONLY sections. The upstream template
+     recursed into subsections and emitted headings down to `#####` for the legacy
+     documentation tree, which (a) is off-spec and (b) gave 40+ archival stubs the
+     same weight as real writing. Here that tree is flattened into the spec's
+     `## Optional` section, which consumers are explicitly allowed to skip when
+     working in a short context. Posts carry a date + one-line description as the
+     spec's "optional link details" so a model can choose without fetching each URL.
+     Rendered as text/plain by the `llms` outputFormat in hugo.yaml (home page only)
+     -> /llms.txt. Regenerated every build; nothing here is hand-maintained. */ -}}
+{{- /* Ventz Changes: one-line detail for a post — the explicit front-matter
+     description when set, else Hugo's auto summary, collapsed to a single line so
+     it cannot break the markdown list. */ -}}
+{{- define "llms_detail" -}}
+{{- $d := cond (ne .Description "") .Description (.Summary | plainify) -}}
+{{- /* Ventz Changes: truncate FIRST, unescape SECOND. Hugo's `truncate` HTML-escapes
+     plain-string input (a straight quote comes back as `&#34;`), so folding entities
+     before it would be undone. Unescaping after also resolves the `&ldquo;`-style
+     entities the markdown typographer emits, plus truncate's own `…` suffix. */ -}}
+{{- $d = $d | truncate 160 | htmlUnescape -}}
+{{- /* Ventz Changes: fold typographic punctuation back to the site's ASCII-only
+     convention rather than leaking curly quotes into a machine-readable index. */ -}}
+{{- $d = $d | replaceRE "[“”]" `"` | replaceRE "[‘’]" "'" -}}
+{{- $d = $d | replaceRE "[—–]" "-" | replaceRE "…" "..." -}}
+{{- $d = $d | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- with $d }}{{ printf " - %s" . }}{{ end -}}
+{{- end -}}
+{{- /* Ventz Changes: "Security / Firewalls"-style trail for a legacy doc page. The
+     two levels every one of them shares (Legacy, Documentation) are dropped as noise. */ -}}
+{{- define "llms_trail" -}}
+{{- $crumbs := slice -}}
+{{- range .Ancestors.Reverse -}}
+{{- if and (ne .Kind "home") (ne .Title "Legacy") (ne .Title "Documentation") -}}
+{{- $crumbs = $crumbs | append .Title -}}
+{{- end -}}
+{{- end -}}
+{{- with $crumbs -}}
+: {{ delimit . " / " }}
+{{- end -}}
+{{- end -}}
+{{- /* Ventz Changes: page sets. `.Section` is the FIRST path element, so the nested
+     legacy tree and the flat posts tree both resolve from one `where` each. */ -}}
+{{- $skip := "archives search" -}}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $legacy := where site.RegularPages "Section" "legacy" -}}
+{{- $pages := where site.RegularPages "Section" "" -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }} - the personal blog of {{ site.Params.author }} Petkov, covering systems administration, security, networking, self-hosting, and the occasional gadget.
+
+Every URL below serves the complete article: no paywall, no login, no client-side
+rendering. Two machine-readable indexes cover the same content -
+{{ site.Home.Permalink }}index.xml (RSS, full article bodies) and
+{{ site.Home.Permalink }}index.json (title, tags, summary and full text of every page).
+
+## Posts
+{{ range $posts }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Date.Format "2006-01-02" }}{{ template "llms_detail" . }}
+{{- end }}
+
+## Pages
+{{ range $pages }}
+{{- if and (not .Params.searchHidden) (not (in (split $skip " ") .Layout)) }}
+- [{{ .Title }}]({{ .Permalink }})
+{{- end }}
+{{- end }}
+
+## Optional
+
+Archived documentation migrated from the old WordPress wiki, kept online so the
+original URLs keep resolving. Many entries are terse notes or empty category
+placeholders - skip this section entirely when working with a limited context.
+{{ range $legacy }}
+- [{{ .Title }}]({{ .Permalink }}){{ template "llms_trail" . }}
+{{- end }}
+{{- /* END Ventz Changes */}}

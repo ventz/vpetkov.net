@@ -1,6 +1,6 @@
 # MANIFEST — ventz-mods snapshot
 
-**Generated:** 2026-08-09 by `generate-ventz-mods.sh` (do not edit by hand)
+**Generated:** 2026-08-10 by `generate-ventz-mods.sh` (do not edit by hand)
 
 ## Base this overlay was built against
 
@@ -14,7 +14,7 @@
 The patches in `patches/` are diffs **from that exact theme commit**. Re-apply
 them after an upstream merge with `./ventz-mods/reapply.sh` (see README).
 
-## Theme overrides (18) — modified copies of theme files
+## Theme overrides (19) — modified copies of theme files
 
 These conflict with upstream changes. Each has a patch in `patches/`.
 
@@ -27,6 +27,7 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
 - `layouts/list.html` — +41/-8
+- `layouts/llms.txt` — +65/-25
 - `layouts/rss.xml` — +3/-1
 - `layouts/taxonomy.html` — +85/-0
 - `assets/css/common/header.css` — +3/-0

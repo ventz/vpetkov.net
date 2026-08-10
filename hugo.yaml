@@ -171,7 +171,8 @@ markup:
     # style: monokai
     #
 # https://gohugo.io/templates/rss/
-# llms.txt (theme ships layouts/llms.txt) — zero-cost AI-crawler index; no strategy built on it
+# llms.txt — zero-cost AI-crawler index; no strategy built on it. Rendered by the
+# site overlay layouts/llms.txt (overrides the theme's generic printer; llmstxt.org shape)
 outputFormats:
   llms:
     mediaType: text/plain
