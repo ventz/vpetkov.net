@@ -32,8 +32,30 @@
 }
 
 .post-entry .entry-content p {
-    margin: 6px 0;
+    /* Ventz Changes: 6px -> 10px; paragraphs inside a preview need real separation
+       at the larger preview type size */
+    margin: 10px 0;
 }
+
+/* Ventz Changes BEGIN: "Read more ->" affordance replacing the old orphan "..."
+   (markup in layouts/list.html) */
+.post-entry .entry-content .entry-more {
+    margin: 12px 0 0;
+}
+
+.post-entry .entry-content .entry-more a {
+    color: var(--accent-link);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.post-entry:hover .entry-content .entry-more a,
+.post-entry:focus-within .entry-content .entry-more a {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+}
+/* Ventz Changes END */
 
 .post-entry .entry-content ul,
 .post-entry .entry-content ol {

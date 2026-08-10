@@ -26,25 +26,28 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
-- `layouts/list.html` — +24/-8
+- `layouts/list.html` — +35/-8
 - `layouts/rss.xml` — +3/-1
 - `layouts/taxonomy.html` — +85/-0
 - `assets/css/common/header.css` — +3/-0
 - `assets/css/common/md-content.css` — +24/-0
-- `assets/css/common/post-entry.css` — +112/-3
+- `assets/css/common/post-entry.css` — +196/-8
 - `assets/css/common/post-single.css` — +44/-1
 - `assets/css/core/reset.css` — +22/-1
 - `assets/css/core/theme-vars.css` — +21/-4
 - `assets/js/fastsearch.js` — +147/-2
 
-## Site-only files (18) — no theme counterpart
+## Site-only files (21) — no theme counterpart
 
 These never conflict; copy them in as-is.
 
+- `layouts/_markup/render-link.html`
+- `layouts/_shortcodes/figure-row.html`
 - `layouts/about.html`
 - `layouts/pages.html`
 - `assets/css/extended/ventz-a11y.css`
 - `assets/css/extended/ventz-entry-preview.css`
+- `assets/css/extended/ventz-figure-row.css`
 - `assets/css/extended/ventz-search.css`
 - `static/_headers`
 - `static/android-chrome-192x192.png`

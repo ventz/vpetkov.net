@@ -49,6 +49,9 @@
     /* Ventz Changes: Added --post-gap instead of --gap to make space bigger between posts */
     margin-bottom: var(--post-gap);
     padding: var(--gap);
+    /* Ventz Changes: the date square FLOATS (see .post-entry .entry-header below) so
+       the title sits beside it and the meta + summary reclaim the full card width
+       once they clear it — no dead gutter under the square. */
     background: var(--entry);
     border-radius: var(--radius);
     transition: transform 0.25s ease;
@@ -72,16 +75,22 @@
 }
 
 .entry-header h2 {
-    font-size: 24px;
-    line-height: 1.3;
+    /* Ventz Changes: slightly larger, tighter title so it reads as the anchor of the card */
+    font-size: 27px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
 }
 
 .entry-content {
-    margin: 8px 0;
-    color: var(--secondary);
-    /* Ventz Changes: Made Text Larger: 14px */
-    font-size: 16px;
-    line-height: 1.6;
+    /* Ventz Changes: was margin 8px 0 — more air under the meta line */
+    margin: 12px 0 0;
+    /* Ventz Changes: preview text now uses the same near-black --content as the post
+       page instead of grey --secondary. Grey body copy at card width was the main
+       reason the list was hard to skim. */
+    color: var(--content);
+    /* Ventz Changes: Made Text Larger: 14px -> 16px -> 18px (post pages are 20px) */
+    font-size: 18px;
+    line-height: 1.7;
     /* Ventz Changes: show full summary — no clamping/truncation */
     /*
     overflow: hidden;
@@ -120,8 +129,11 @@
     color: var(--secondary);
     /* Ventz Changes: Made Footer Larger: 13px */
     font-size: 14px;
-    font-style: italic;
+    /* Ventz Changes: dropped font-style: italic — italic meta at small size is the
+       hardest line on the card to read, and it competed with the summary text */
+    font-style: normal;
     font-weight: 400;
+    letter-spacing: 0.005em;
 }
 
 /* Ventz Changes: comment only — theme rule left intact. It still serves archive
@@ -192,14 +204,92 @@
     border-radius: 3px;
 }
 
+/* Ventz Changes BEGIN: the .entry-topline wrapper (layouts/list.html) is a two-column
+   grid — date square left, title over meta right. The header dissolves into it with
+   display: contents so its two children land in the right columns. Title and meta
+   therefore share one left edge no matter how many lines the title runs to; the
+   summary lives outside this row and still spans the full card width, so no dead
+   whitespace column forms under the square. */
+.post-entry .entry-topline {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    column-gap: 20px;
+    align-items: start;
+    /* breathing room between the date square and the summary below it */
+    margin-bottom: 20px;
+}
+
+.post-entry .entry-topline .entry-header {
+    display: contents;
+}
+
+.post-entry .entry-topline .date-container {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin-right: 0;
+}
+
+.post-entry .entry-topline .entry-hint-parent {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    /* min-width:0 so a long unbreakable word can't blow the column out */
+    min-width: 0;
+}
+
+.post-entry .entry-topline .entry-footer {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 8px;
+}
+
+.post-entry .entry-content {
+    margin-top: 0;
+}
+
+/* On phones the date square becomes a compact chip above the title so the text
+   gets the full card width */
+@media (max-width: 560px) {
+    .post-entry .entry-topline {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .post-entry .entry-topline .date-container,
+    .post-entry .entry-topline .entry-hint-parent,
+    .post-entry .entry-topline .entry-footer {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .post-entry .entry-topline .date-container {
+        flex-direction: row;
+        gap: 6px;
+        width: fit-content;
+        height: auto;
+        padding: 4px 10px;
+        margin-bottom: 10px;
+    }
+
+    .post-entry .entry-topline .day {
+        font-size: 1em;
+    }
+
+    .post-entry .entry-content {
+        font-size: 17px;
+    }
+}
+/* Ventz Changes END */
+
 /* Ventz Changes: Added the .date-container block - solid red date square with white
    text (was green #7ab80e). Literal red is intentional here: it is a background
    behind white text, not a link color, so it is exempt from the --accent-link rule. */
 .entry-header .date-container {
     /*background-color: #7ab80e;*/
     background-color: rgb(155, 34, 44);
-    width: 80px; /* Set to desired square size */
-    height: 80px; /* Same value as width to create a square */
+    /* Ventz Changes: 80px -> 76px, matching the card grid's first column */
+    width: 76px; /* Set to desired square size */
+    height: 76px; /* Same value as width to create a square */
     display: flex;
     margin-right: 20px; /* Adjust the value as needed to achieve the desired spacing */
     flex-shrink: 0; /* Prevents the box from shrinking */

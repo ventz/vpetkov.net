@@ -20,9 +20,16 @@
  {{- else if $term }}
  {{- $class = "post-entry tag-entry" }}
  {{- end }}
-@@ -67,8 +71,16 @@
+@@ -66,9 +70,23 @@
+ <article class="{{ $class }}">
    {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
    {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
++  {{- /* Ventz Changes: date square + (title, meta) as an explicit two-column row.
++         Previously the meta line was a sibling of the header and its position
++         depended on how tall the title happened to be — beside the date square for
++         short titles, wrapped back to the card's left edge for tall ones. The
++         summary stays OUTSIDE this row so it still spans the full card width. */}}
++  <div class="entry-topline">
    <header class="entry-header">
 +    {{- /* Ventz Changes (a11y): single <time> announced as one date; visual split hidden
 +         from AT. sr-only text instead of aria-label (prohibited on <time>) */}}
@@ -38,7 +45,7 @@
        {{- if .Draft }}
        <span class="entry-hint" title="Draft">
          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-@@ -79,17 +91,22 @@
+@@ -79,17 +97,27 @@
        {{- end }}
      </h2>
    </header>
@@ -53,6 +60,7 @@
    </footer>
    {{- end }}
 -  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
++  </div>{{- /* Ventz Changes: end .entry-topline */}}
 +  {{- if (ne (.Param "hideSummary") true) }}
 +  <div class="entry-content">
 +    {{- /* Ventz Changes: rich HTML preview (rendered .Summary). Headings are
@@ -61,7 +69,11 @@
 +           by assets/css/extended/ventz-entry-preview.css. A div wrapper because
 +           block children inside <p> break the parser. */}}
 +    {{- $preview := replaceRE `(?s)<h[1-6][^>]*>(.*?)</h[1-6]>` `<p><strong>$1</strong></p>` (string .Summary) }}
-+    <div>{{ $preview | safeHTML }}{{ if .Truncated }}...{{ end }}</div>
++    {{- /* Ventz Changes: the bare "..." rendered as a stray orphan line under the
++           preview and read as noise. A real "Read more" affordance instead; it is
++           aria-hidden + untabbable because the title link above already goes to the
++           same URL (no duplicate link for AT / keyboard users). */}}
++    <div>{{ $preview | safeHTML }}{{ if .Truncated }}<p class="entry-more"><a href="{{ .Permalink }}" aria-hidden="true" tabindex="-1">Read more &rarr;</a></p>{{ end }}</div>
 +  </div>
 +  {{- end }}
  </article>
