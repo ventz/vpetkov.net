@@ -21,6 +21,8 @@ When USPS Informed Delivery was announced, I was genuinely excited. Scans of you
 
 <!--more-->
 
+**Updated 8/16/2026: how to actually stop the mail.** This tool makes the digest readable, but it does not stop the junk arriving. I went looking for what actually works and found most of the published advice is stale or wrong - the FTC's own page still quotes DMAchoice at $6 when it is $8, five widely cited opt-out URLs are dead outright, and the data-removal services that dominate those search results make no postal-mail claim on their own pricing pages. So I wrote it down properly: [How to stop physical junk mail](https://github.com/ventz/usps-informed-delivery-no-ads/blob/main/docs/stopping-junk-mail.md) - a printable checklist, every URL verified. Almost all of it is a one-time afternoon. The two things no guide mentions: the opt-outs expire, and moving silently voids them.
+
 ## The problem is not clutter - it is replacement
 
 This is the part that took me a while to notice, and it is worse than it sounds.
