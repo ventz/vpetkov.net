@@ -24,3 +24,14 @@
                      height="{{- site.Params.label.iconHeight | default "30" -}}">
                  {{- end -}}
                  {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
+@@ -92,7 +99,9 @@
+             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+             <li>
+                 <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
+-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
++                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}
++                {{- /* Ventz Changes: open external menu links (e.g. GitHub) in a new tab; same "://" test the theme uses for the external-link icon below */}}
++                {{- cond (findRE "://" .URL) (" target=\"_blank\" rel=\"noopener noreferrer\"" | safeHTMLAttr) ("" | safeHTMLAttr) }}>
+                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
+                         {{- .Pre }}
+                         {{- .Name -}}

@@ -1,6 +1,6 @@
 # MANIFEST — ventz-mods snapshot
 
-**Generated:** 2026-08-10 by `generate-ventz-mods.sh` (do not edit by hand)
+**Generated:** 2026-08-19 by `generate-ventz-mods.sh` (do not edit by hand)
 
 ## Base this overlay was built against
 
@@ -9,7 +9,7 @@
 | PaperMod commit | `d3768854d00ad003b0a8dbdba254ce9224377a01` (`d376885`, 2026-08-02) |
 | PaperMod remote | https://github.com/ventz/hugo-PaperMod.git |
 | Theme min Hugo  | 0.146.0 |
-| Hugo used       | v0.164.0+extended+withdeploy |
+| Hugo used       | v0.165.0+extended+withdeploy |
 
 The patches in `patches/` are diffs **from that exact theme commit**. Re-apply
 them after an upstream merge with `./ventz-mods/reapply.sh` (see README).
@@ -22,7 +22,7 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_partials/comments.html` — +67/-0
 - `layouts/_partials/extend_footer.html` — +13/-3
 - `layouts/_partials/footer.html` — +17/-2
-- `layouts/_partials/header.html` — +9/-2
+- `layouts/_partials/header.html` — +12/-3
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
