@@ -30,6 +30,11 @@ body {
     line-height: 1.6;
     word-break: break-word;
     background: var(--theme);
+    /* Ventz Changes BEGIN: grayscale antialiasing - macOS default smoothing thickens
+       every glyph stem, which is most of why body text read as semi-bold */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Ventz Changes END */
 }
 
 article,

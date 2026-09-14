@@ -12,9 +12,10 @@
 }
 /* Ventz Changes END */
 
-/* Ventz Changes BEGIN: added section — heavier weight for the post date */
+/* Ventz Changes BEGIN: added section — slightly heavier weight for the post date
+   (was bold, which competed with the title) */
 .post-header span {
-    font-weight: bold;
+    font-weight: 500;
 }
 /* Ventz Changes END */
 

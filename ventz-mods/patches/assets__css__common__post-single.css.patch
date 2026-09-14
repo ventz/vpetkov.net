@@ -1,6 +1,6 @@
 --- a/assets/css/common/post-single.css
 +++ b/assets/css/common/post-single.css
-@@ -1,10 +1,28 @@
+@@ -1,10 +1,29 @@
  .page-header,
  .post-header {
      margin: 24px auto var(--content-gap) auto;
@@ -15,9 +15,10 @@
 +}
 +/* Ventz Changes END */
 +
-+/* Ventz Changes BEGIN: added section — heavier weight for the post date */
++/* Ventz Changes BEGIN: added section — slightly heavier weight for the post date
++   (was bold, which competed with the title) */
 +.post-header span {
-+    font-weight: bold;
++    font-weight: 500;
 +}
 +/* Ventz Changes END */
 +
@@ -30,7 +31,7 @@
  }
  
  .post-description {
-@@ -61,8 +79,30 @@
+@@ -61,8 +80,30 @@
      background: var(--code-bg);
      border-radius: var(--radius);
      border: 1px solid var(--border);
@@ -61,7 +62,7 @@
  [data-theme="dark"] details.toc {
      background: var(--entry);
  }
-@@ -109,6 +149,13 @@
+@@ -109,6 +150,13 @@
      padding-bottom: 0.6rem;
  }
  

@@ -1,6 +1,6 @@
 # MANIFEST — ventz-mods snapshot
 
-**Generated:** 2026-08-19 by `generate-ventz-mods.sh` (do not edit by hand)
+**Generated:** 2026-09-14 by `generate-ventz-mods.sh` (do not edit by hand)
 
 ## Base this overlay was built against
 
@@ -9,7 +9,7 @@
 | PaperMod commit | `d3768854d00ad003b0a8dbdba254ce9224377a01` (`d376885`, 2026-08-02) |
 | PaperMod remote | https://github.com/ventz/hugo-PaperMod.git |
 | Theme min Hugo  | 0.146.0 |
-| Hugo used       | v0.165.0+extended+withdeploy |
+| Hugo used       | v0.166.0+extended+withdeploy |
 
 The patches in `patches/` are diffs **from that exact theme commit**. Re-apply
 them after an upstream merge with `./ventz-mods/reapply.sh` (see README).
@@ -26,16 +26,16 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
-- `layouts/list.html` — +41/-8
+- `layouts/list.html` — +43/-8
 - `layouts/llms.txt` — +65/-25
 - `layouts/rss.xml` — +3/-1
 - `layouts/taxonomy.html` — +85/-0
 - `assets/css/common/header.css` — +3/-0
-- `assets/css/common/md-content.css` — +24/-0
+- `assets/css/common/md-content.css` — +29/-0
 - `assets/css/common/post-entry.css` — +202/-9
-- `assets/css/common/post-single.css` — +44/-1
-- `assets/css/core/reset.css` — +22/-1
-- `assets/css/core/theme-vars.css` — +21/-4
+- `assets/css/common/post-single.css` — +45/-1
+- `assets/css/core/reset.css` — +27/-1
+- `assets/css/core/theme-vars.css` — +23/-5
 - `assets/js/fastsearch.js` — +147/-2
 
 ## Site-only files (21) — no theme counterpart

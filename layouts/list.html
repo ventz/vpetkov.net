@@ -115,8 +115,10 @@
            ONE target — click anywhere, get the post. A live link inside the teaser is a
            second destination hidden in a surface readers already treat as a single
            button, and it silently exits the site from a summary. The real link is in
-           the post itself. */}}
-    {{- $preview = replaceRE `</?a\b[^>]*>` `` $preview }}
+           the post itself. Link text is kept in <em class="preview-link"> so it still
+           stands out (italic) without being clickable. */}}
+    {{- $preview = replaceRE `<a\b[^>]*>` `<em class="preview-link">` $preview }}
+    {{- $preview = replaceRE `</a>` `</em>` $preview }}
     {{- /* Ventz Changes: the bare "..." rendered as a stray orphan line under the
            preview and read as noise. A real "Read more" affordance instead; it is
            aria-hidden + untabbable because the title link above already goes to the

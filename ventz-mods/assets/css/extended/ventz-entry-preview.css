@@ -43,6 +43,27 @@
     overflow-wrap: anywhere;
 }
 
+/* Ventz Changes BEGIN: previews read as running text, not a slab. At full card width
+   a line held ~88 characters; capping the measure near 65ch, a touch more leading and
+   balanced line breaks (no one-word last lines) make it read like a paragraph. */
+.post-entry .entry-content {
+    font-size: 17px;
+    /* Ventz Changes: 1.75 left too much air between lines */
+    line-height: 1.55;
+}
+
+/* Ventz Changes: link text in previews (anchors become <em class="preview-link"> in
+   layouts/list.html) - italic so URLs stand out, but deliberately not clickable */
+.post-entry .entry-content .preview-link {
+    font-style: italic;
+}
+
+.post-entry .entry-content p {
+    max-width: 65ch;
+    text-wrap: pretty;
+}
+/* Ventz Changes END */
+
 /* Ventz Changes BEGIN: "Read more ->" affordance replacing the old orphan "..."
    (markup in layouts/list.html) */
 .post-entry .entry-content .entry-more {

@@ -15,6 +15,11 @@
 .md-content h2 {
     margin: 32px auto 24px;
     font-size: 32px;
+    /* Ventz Changes BEGIN: heavier, tighter section headings for clear contrast with body text */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    /* Ventz Changes END */
     /* Ventz Changes: ADDED HR Border under heading */
     border-bottom: 1px solid var(--tertiary);
 }
@@ -57,11 +62,11 @@
     margin-bottom: var(--content-gap);
 }
 
-/* Ventz Changes BEGIN: ADDED font-size */
+/* Ventz Changes BEGIN: ADDED font-size (was 20px; 18px reads lighter) */
 .md-content p,
 .md-content figure,
 .md-content ul {
-    font-size: 20px;
+    font-size: 18px;
 }
 /* Ventz Changes END */
 
