@@ -1,6 +1,6 @@
 # MANIFEST — ventz-mods snapshot
 
-**Generated:** 2026-09-14 by `generate-ventz-mods.sh` (do not edit by hand)
+**Generated:** 2026-09-15 by `generate-ventz-mods.sh` (do not edit by hand)
 
 ## Base this overlay was built against
 
@@ -26,13 +26,13 @@ These conflict with upstream changes. Each has a patch in `patches/`.
 - `layouts/_partials/templates/opengraph.html` — +3/-1
 - `layouts/baseof.html` — +7/-5
 - `layouts/index.json` — +4/-1
-- `layouts/list.html` — +43/-8
+- `layouts/list.html` — +50/-8
 - `layouts/llms.txt` — +65/-25
 - `layouts/rss.xml` — +3/-1
 - `layouts/taxonomy.html` — +85/-0
 - `assets/css/common/header.css` — +3/-0
 - `assets/css/common/md-content.css` — +29/-0
-- `assets/css/common/post-entry.css` — +202/-9
+- `assets/css/common/post-entry.css` — +215/-9
 - `assets/css/common/post-single.css` — +45/-1
 - `assets/css/core/reset.css` — +27/-1
 - `assets/css/core/theme-vars.css` — +23/-5

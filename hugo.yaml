@@ -91,8 +91,10 @@ params:
       url: "https://github.com/ventz"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
+    # Posts without cover.image are unaffected; covers show on cards only
+    # (the post body carries its own figures, so single pages stay hidden).
+    hidden: false
+    hiddenInList: false # show on list pages and home
     hiddenInSingle: true # hide on single page
 
   editPost:

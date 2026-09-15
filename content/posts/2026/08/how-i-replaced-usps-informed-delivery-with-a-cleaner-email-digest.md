@@ -14,6 +14,9 @@ tags:
   - email
   - ai
   - python
+cover:
+  image: "https://raw.githubusercontent.com/ventz/usps-informed-delivery-no-ads/main/screenshots/2026-08-06-clean.png"
+  alt: "The rebuilt USPS digest: packages first with status and tracking, then the one real mail scan, with no advertising"
 description: "Half of my Informed Delivery digest is advertising shown instead of my actual mail, because USPS lets mailers replace the scan of your envelope with a marketing image. So I built a small pipeline that strips the ads and re-sends a clean, self-contained email."
 ---
 

@@ -10,7 +10,7 @@
  {{- if .Content }}
  <div class="post-content md-content">
    {{- if not (.Param "disableAnchoredHeadings") }}
-@@ -58,7 +61,8 @@
+@@ -58,17 +61,38 @@
  
  {{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
  {{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
@@ -20,10 +20,16 @@
  {{- else if $term }}
  {{- $class = "post-entry tag-entry" }}
  {{- end }}
-@@ -66,9 +70,23 @@
+ 
  <article class="{{ $class }}">
    {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
++  {{- /* Ventz Changes: cover renders BELOW the preview text (see .entry-content), not
++         above the title - the date + title stay the first thing every card shows, so a
++         card with a cover lines up with the cards around it. Falls back to here only
++         when the summary is hidden. */}}
++  {{- if (eq (.Param "hideSummary") true) }}
    {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
++  {{- end }}
 +  {{- /* Ventz Changes: date square + (title, meta) as an explicit two-column row.
 +         Previously the meta line was a sibling of the header and its position
 +         depended on how tall the title happened to be — beside the date square for
@@ -45,7 +51,7 @@
        {{- if .Draft }}
        <span class="entry-hint" title="Draft">
          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-@@ -79,17 +97,35 @@
+@@ -79,17 +103,36 @@
        {{- end }}
      </h2>
    </header>
@@ -81,7 +87,8 @@
 +           preview and read as noise. A real "Read more" affordance instead; it is
 +           aria-hidden + untabbable because the title link above already goes to the
 +           same URL (no duplicate link for AT / keyboard users). */}}
-+    <div>{{ $preview | safeHTML }}{{ if .Truncated }}<p class="entry-more"><a href="{{ .Permalink }}" aria-hidden="true" tabindex="-1">Read more &rarr;</a></p>{{ end }}</div>
++    {{- /* Ventz Changes: cover sits between the preview and "Read more" */}}
++    <div>{{ $preview | safeHTML }}{{ partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}{{ if .Truncated }}<p class="entry-more"><a href="{{ .Permalink }}" aria-hidden="true" tabindex="-1">Read more &rarr;</a></p>{{ end }}</div>
 +  </div>
 +  {{- end }}
  </article>

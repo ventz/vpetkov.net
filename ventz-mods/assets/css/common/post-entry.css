@@ -340,6 +340,21 @@
     height: auto;
 }
 
+/* BEGIN: Ventz Changes: covers on list cards are capped in height and left-aligned
+   with the preview text. Tall covers (phone screenshots) at full card width would
+   otherwise be taller than the card's text; wide banners are unaffected. */
+.post-entry .entry-cover {
+    align-items: flex-start;
+    margin-top: var(--gap);
+}
+
+.post-entry .entry-cover img {
+    width: auto;
+    max-width: 100%;
+    max-height: 420px;
+}
+/* END: Ventz Changes */
+
 .entry-cover a {
     text-underline-offset: 0.3rem;
     text-decoration: underline;
